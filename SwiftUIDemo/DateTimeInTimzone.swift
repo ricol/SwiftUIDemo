@@ -9,7 +9,12 @@ import SwiftUI
 
 class TimeZonesViewModel: ObservableObject {
     @Published var timezones: [String] = ["Asia/Shanghai", "America/New_York", "America/Denver"]
-    @Published var selectedTimezone: String = "Asia/Shanghai"
+    @Published var selectedTimezone: String = "Asia/Shanghai" {
+        didSet {
+            date = Date()
+            ObjectWillChangePublisher().send()
+        }
+    }
     @Published var date: Date = Date()
     
     var allTimezones: [String] {
@@ -94,7 +99,7 @@ struct DisplayInOtherTimeZones: View {
                         Text(getResultFor(date: vm.date, fromTimezone: vm.selectedTimezone, toTimezone: timezone))
                     }
                     Spacer()
-                    Clock(timezone: TimeZone(identifier: timezone)!, start: toDateIn(timezome: timezone, date: Date())!,
+                    Clock(timezone: TimeZone(identifier: timezone)!, start: vm.date,
                           center: CGPoint(x: 30, y: 30),
                           radius: 180,
                           innerRadius: 20.0,

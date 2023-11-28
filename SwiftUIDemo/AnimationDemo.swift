@@ -12,41 +12,58 @@ struct AnimationDemo: View {
     @State var size: CGSize = CGSize(width: 100, height: 100)
     @State var rotation: Angle = Angle(degrees: 0)
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Hello, World!")
-                .foregroundStyle(Color.white)
-                .padding()
-                .frame(width: size.width, height: size.height)
-                .background(.blue)
-                .padding()
-                .background(.yellow)
-                .rotationEffect(degree)
-                .animation(.easeIn, value: degree)
-                .animation(.easeIn, value: size.width)
-                .animation(.easeIn, value: size.height)
-                .rotation3DEffect(rotation, axis: (x: 0.0, y: 1.0, z: 0.0))
-                .animation(.easeIn, value: rotation)
-            Spacer()
-            Divider()
-            HStack {
-                Button("Rotate") {
-                    degree.degrees += 10
+        Form {
+            Section("Symbol effect") {
+                HStack {
+                    Text("Symbol effect: ")
+                    Image(systemName: "wifi").symbolEffect(.variableColor.reversing)
+                    Image(systemName: "bolt.slash.fill").symbolEffect(.pulse)
+                    Image(systemName: "folder.fill.badge.person.crop").symbolEffect(.pulse)
+                    // Add an effect in SwiftUI.
+                    Image(systemName: "globe")
+                        // Add effect with discrete behavior to image view.
+                        .symbolEffect(.pulse, options: .repeat(3))
+                    Image(systemName: "globe")
+                        // Add effect with indefinite behavior to image view.
+                        .symbolEffect(.pulse)
                 }
-                Button("Size") {
-                    size.width += CGFloat((10...20).randomElement()!)
-                    size.height += CGFloat((10...20).randomElement()!)
+            }
+            Section("View Animation") {
+                VStack {
+                    Text("Hello, World!")
+                        .foregroundStyle(Color.white)
+                        .padding()
+                        .frame(width: size.width, height: size.height)
+                        .background(.blue)
+                        .padding()
+                        .background(.yellow)
+                        .rotationEffect(degree)
+                        .animation(.easeIn, value: degree)
+                        .animation(.easeIn, value: size.width)
+                        .animation(.easeIn, value: size.height)
+                        .rotation3DEffect(rotation, axis: (x: 0.0, y: 1.0, z: 0.0))
+                        .animation(.easeIn, value: rotation)
+                    Divider()
+                    HStack {
+                        Button("Rotate") {
+                            degree.degrees += 10
+                        }
+                        Button("Size") {
+                            size.width += CGFloat((10...20).randomElement()!)
+                            size.height += CGFloat((10...20).randomElement()!)
+                        }
+                        Button("3D") {
+                            rotation.degrees += 10
+                        }
+                        Button("Reset") {
+                            degree.degrees = 0
+                            rotation.degrees = 0
+                            size.width = 100
+                            size.height = 100
+                        }
+                    }.buttonStyle(.borderedProminent)
                 }
-                Button("3D Rotate") {
-                    rotation.degrees += 10
-                }
-                Button("Reset") {
-                    degree.degrees = 0
-                    rotation.degrees = 0
-                    size.width = 100
-                    size.height = 100
-                }
-            }.buttonStyle(.borderedProminent)
+            }
         }
     }
 }

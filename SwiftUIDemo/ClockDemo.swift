@@ -41,13 +41,20 @@ struct Pen: Shape {
 let _pi: CGFloat = 3.1415216
 
 struct ClockDemo: View {
+    @State var selectedTimezone: String = ""
+    var timezone: TimeZone = TimeZone.current
     var body: some View {
         ZStack {
             LinearGradient(colors: [.blue, .green], startPoint: .top, endPoint: .bottom)
+            Picker("Select timezone: ", selection: $selectedTimezone) {
+                ForEach(TimeZone.knownTimeZoneIdentifiers, id: \.self) {
+                    Text($0)
+                }
+            }.foregroundColor(.white).offset(CGSize(width: 0, height: -250))
             ZStack {
+                Clock(center:  CGPoint(x: UIScreen.main.bounds.size.width / 2 + 60, y: UIScreen.main.bounds.size.height / 2 + 50), radius: 40, innerRadius: 10.0, bigClock: false, digital: false)
                 Clock(center: CGPoint(x: UIScreen.main.bounds.size.width / 2, y: UIScreen.main.bounds.size.height / 2),
                       radius: 180, innerRadius: 20.0)
-                Clock(center:  CGPoint(x: UIScreen.main.bounds.size.width / 2 + 60, y: UIScreen.main.bounds.size.height / 2 + 50), radius: 40, innerRadius: 10.0, bigClock: false)
             }
         }.ignoresSafeArea()
     }
@@ -71,13 +78,13 @@ struct Clock: View {
     
     var body: some View {
         ZStack {
-            ClockFrameView(bigClock: bigClock, 
+            ClockFrameView(bigClock: bigClock,
                            radius: radius,
                            center: center,
                            _delta: _delta,
                            indicatorColor: indicatorColor,
                            numberColor: numberColor)
-            ClockContentView(timezone: timezone, 
+            ClockContentView(timezone: timezone,
                              start: start,
                              bigClock: bigClock,
                              digital: digital,
@@ -141,28 +148,29 @@ struct ClockContentView: View {
     @State var minute: CGFloat = 0
     @State var second: CGFloat = 0
     @State var ssecondTotal: CGFloat = 0
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     var body: some View {
         if bigClock {
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: hour, totalValue: 12, factor: 0.6, delta: _delta, relativeValue: center)).stroke(lineWidth: 5).foregroundStyle(hourColor)
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: minute, totalValue: 60, factor: 0.7, delta: _delta, relativeValue: center)).stroke(lineWidth: 5).foregroundStyle(minuteColor)
+            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: hour, totalValue: 12, factor: 0.5, delta: _delta, relativeValue: center)).stroke(lineWidth: 8).foregroundStyle(hourColor)
+            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: minute, totalValue: 60, factor: 0.65, delta: _delta, relativeValue: center)).stroke(lineWidth: 6).foregroundStyle(minuteColor)
             Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: second, totalValue: 60, factor: 0.8, delta: _delta, relativeValue: center)).stroke(lineWidth: 5).foregroundStyle(secondColor)
         }else {
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: ssecondTotal, totalValue: 600, factor: 0.6, delta: _delta, relativeValue: center), innerRadius: 2).stroke(lineWidth: 5).foregroundStyle(.white)
+            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: CGFloat(Int(ssecondTotal) % 1000), totalValue: 1000, factor: 0.6, delta: _delta, relativeValue: center), innerRadius: 2).stroke(lineWidth: 5).foregroundStyle(.white)
         }
         
         Circle().frame(width: innerRadius, height: innerRadius).position(center).onReceive(timer, perform: { _ in
             var calendar = Calendar(identifier: .gregorian)
             calendar.timeZone = timezone
-            let date = start.addingTimeInterval(Date().timeIntervalSince(start)) // save date, so all components use the same date
+            let date = start.addingTimeInterval(ssecondTotal / 100)
             hour = CGFloat(calendar.component(.hour, from: date))
             minute = CGFloat(calendar.component(.minute, from: date))
             second = CGFloat(calendar.component(.second, from: date))
-            if (second == 0) { ssecondTotal = 0 }
+            minute += second / 60
+            hour += minute / 60
             ssecondTotal += 1
         })
         if digital {
-            Text("\(Int(hour)):\(Int(minute)):\(Int(second)).\(Int(ssecondTotal))").padding(.top, 500).font(.title).foregroundColor(numberColor)
+            Text("\(Int(hour)):\(Int(minute)):\(Int(second)).\(Int(Int(ssecondTotal) % 1000))").padding(.top, 500).font(.title).foregroundColor(numberColor)
         }
     }
     
