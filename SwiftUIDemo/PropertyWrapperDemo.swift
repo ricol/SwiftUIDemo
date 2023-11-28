@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-class Book: ObservableObject {
+fileprivate class Book: ObservableObject {
     @Published var title = "A sample book"
     var isAvailable = true
 }
 
 @Observable
-class Book1 {
+fileprivate class Book1 {
     var title = "A sample book"
     var isAvailable = true
 }
 
-struct Name {
+fileprivate struct Name {
     var text: String
 }
 
-class Data {
+fileprivate class Data {
     var value: String = "data"
 }
 
@@ -36,7 +36,7 @@ struct PropertyWrapperDemo: View {
     var body: some View {
         Form {
             Section("State on Struct") {
-                VStack {
+                VStack(alignment: .leading) {
                     Button("Change @State name") {
                         name = Name(text: name.text + " updated.")
                     }
@@ -44,7 +44,7 @@ struct PropertyWrapperDemo: View {
                 }
             }
             Section("State on Class") {
-                VStack {
+                VStack(alignment: .leading) {
                     Button("Change @State a.property") {
                         a.value += a.value
                     }
@@ -59,7 +59,7 @@ struct PropertyWrapperDemo: View {
                 }
             }
             Section("@Observable") {
-                VStack {
+                VStack(alignment: .leading) {
                     Button("update book") {
                         book.title = "changed book title"
                     }
@@ -67,7 +67,7 @@ struct PropertyWrapperDemo: View {
                 }
             }
             Section("ObservableObject") {
-                VStack {
+                VStack(alignment: .leading) {
                     Button("update book") {
                         book1.title = "changed book1 title"
                     }
@@ -75,7 +75,7 @@ struct PropertyWrapperDemo: View {
                 }
             }
             Section("ObservedObject") {
-                VStack {
+                VStack(alignment: .leading) {
                     TextField("title", text: $book.title)
                     BookTitleEditViewBinding(book: book)
                 }
@@ -90,14 +90,14 @@ struct PropertyWrapperDemo: View {
     }
 }
 
-struct BookTitleEditViewBinding: View {
+fileprivate struct BookTitleEditViewBinding: View {
     @ObservedObject var book: Book
     var body: some View {
             TextField("title", text: $book.title)
     }
 }
 
-struct BookTitleEditView: View {
+fileprivate struct BookTitleEditView: View {
     @Bindable var book: Book1
     var body: some View {
             TextField("title", text: $book.title)
@@ -105,7 +105,7 @@ struct BookTitleEditView: View {
 }
 
 
-struct BookView: View {
+fileprivate struct BookView: View {
     @ObservedObject var book: Book
 
     var body: some View {
@@ -113,7 +113,7 @@ struct BookView: View {
     }
 }
 
-struct BookView1: View {
+fileprivate struct BookView1: View {
      var book: Book1
 
     var body: some View {

@@ -74,10 +74,12 @@ struct Clock: View {
     var indicatorColor: Color = .yellow
     var numberColor: Color = .white
     var frameColor: Color = .white
+    var autoTimer = true
     let _delta: CGFloat = -_pi / 2.0
     
     var body: some View {
         ZStack {
+//            Text("\(timezone.identifier)").offset(CGSize(width: 0, height: -50.0))
             ClockFrameView(bigClock: bigClock,
                            radius: radius,
                            center: center,
@@ -95,7 +97,8 @@ struct Clock: View {
                              hourColor: hourColor,
                              minuteColor: minuteColor,
                              secondColor: secondColor,
-                             numberColor: numberColor)
+                             numberColor: numberColor,
+                             autoTimer: autoTimer)
             
         }.foregroundColor(frameColor)
     }
@@ -143,6 +146,7 @@ struct ClockContentView: View {
     var minuteColor: Color
     var secondColor: Color
     var numberColor: Color
+    var autoTimer: Bool = true
     
     @State var hour: CGFloat = 0
     @State var minute: CGFloat = 0
@@ -161,7 +165,8 @@ struct ClockContentView: View {
         Circle().frame(width: innerRadius, height: innerRadius).position(center).onReceive(timer, perform: { _ in
             var calendar = Calendar(identifier: .gregorian)
             calendar.timeZone = timezone
-            let date = start.addingTimeInterval(ssecondTotal / 100)
+            var date = start
+            date = autoTimer ? start.addingTimeInterval(ssecondTotal / 100) : start
             hour = CGFloat(calendar.component(.hour, from: date))
             minute = CGFloat(calendar.component(.minute, from: date))
             second = CGFloat(calendar.component(.second, from: date))

@@ -12,7 +12,7 @@ struct SwiftUIDemoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PropertyWrapperDemo()
+            DateTimeInTimzone()
         }
     }
 }
