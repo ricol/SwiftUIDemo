@@ -9,11 +9,11 @@ import SwiftUI
 
 class TimeZonesViewModel: ObservableObject {
     @Published var timezones: [String] = ["Asia/Shanghai", "America/New_York", "America/Denver"]
-    @Published var selectedTimezone: String = "Asia/Shanghai" {
-        didSet {
-            date = getDate(fromTimezone: oldValue, toTimezone: selectedTimezone, date: date) ?? date
-        }
-    }
+    @Published var selectedTimezone: String = "Asia/Shanghai"
+//        didSet {
+//            print("oldValue: \(oldValue), newValue: \(selectedTimezone)")
+//            date = getDate(fromTimezone: oldValue, toTimezone: selectedTimezone, date: date) ?? date
+//        }
     @Published var date: Date = Date()
     
     var allTimezones: [String] {
@@ -45,7 +45,7 @@ class TimeZonesViewModel: ObservableObject {
     }
 }
 
-struct DateTimeInTimzone: View {
+struct DateTimeInTimeZoneDemo: View {
     @StateObject var vm = TimeZonesViewModel()
     var body: some View {
         NavigationView {
@@ -171,7 +171,7 @@ struct CitiesView: View {
 }
 
 #Preview {
-    DateTimeInTimzone()
+    DateTimeInTimeZoneDemo()
 }
 
 func getResultFor(date: Date, fromTimezone: String, toTimezone: String) -> String {

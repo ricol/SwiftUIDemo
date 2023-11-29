@@ -27,13 +27,22 @@ struct Pen: Shape {
     var start: CGPoint
     var end: CGPoint
     var lineWidth: CGFloat = 1.0
-    var innerRadius: CGFloat = 5
     
     func path(in rect: CGRect) -> Path {
         var p = Path()
         p.move(to: start)
         p.addLine(to: end)
-        p.addArc(center: end, radius: innerRadius, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 360), clockwise: true)
+        return p
+    }
+}
+
+struct CircleShape: Shape {
+    var point: CGPoint
+    var radius: CGFloat = 3
+    
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.addArc(center: point, radius: radius, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 360), clockwise: true)
         return p
     }
 }
@@ -42,7 +51,7 @@ let _pi: CGFloat = 3.1415216
 
 struct ClockDemo: View {
     @State var selectedTimezone: String = ""
-    var timezone: TimeZone = TimeZone.current
+    var timezone: TimeZone = TimeZone(identifier: "Asia/Shanghai")!
     var body: some View {
         ZStack {
             LinearGradient(colors: [.blue, .green], startPoint: .top, endPoint: .bottom)
@@ -52,9 +61,9 @@ struct ClockDemo: View {
                 }
             }.foregroundColor(.white).offset(CGSize(width: 0, height: -250))
             ZStack {
-                Clock(center:  CGPoint(x: UIScreen.main.bounds.size.width / 2 + 60, y: UIScreen.main.bounds.size.height / 2 + 50), radius: 40, innerRadius: 10.0, bigClock: false, digital: false)
-                Clock(center: CGPoint(x: UIScreen.main.bounds.size.width / 2, y: UIScreen.main.bounds.size.height / 2),
-                      radius: 180, innerRadius: 20.0)
+                Clock(timezone: timezone, center:  CGPoint(x: UIScreen.main.bounds.size.width / 2 + 60, y: UIScreen.main.bounds.size.height / 2 + 50), radius: 40, innerRadius: 10.0, bigClock: false,  digital: false)
+                Clock(timezone: timezone, center: CGPoint(x: UIScreen.main.bounds.size.width / 2, y: UIScreen.main.bounds.size.height / 2),
+                      radius: 180, innerRadius: 20.0, showTimezone: true)
             }
         }.ignoresSafeArea()
     }
@@ -75,11 +84,16 @@ struct Clock: View {
     var numberColor: Color = .white
     var frameColor: Color = .white
     var autoTimer = true
+    var showTimezone = false
     let _delta: CGFloat = -_pi / 2.0
     
     var body: some View {
         ZStack {
-//            Text("\(timezone.identifier)").offset(CGSize(width: 0, height: -50.0))
+            if showTimezone {
+                if let data = timezone.identifier.split(separator: "/").last {
+                    Text(String(data)).offset(CGSize(width: 0, height: -50.0))
+                }
+            }
             ClockFrameView(bigClock: bigClock,
                            radius: radius,
                            center: center,
@@ -155,11 +169,19 @@ struct ClockContentView: View {
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     var body: some View {
         if bigClock {
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: hour, totalValue: 12, factor: 0.5, delta: _delta, relativeValue: center)).stroke(lineWidth: 8).foregroundStyle(hourColor)
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: minute, totalValue: 60, factor: 0.65, delta: _delta, relativeValue: center)).stroke(lineWidth: 6).foregroundStyle(minuteColor)
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: second, totalValue: 60, factor: 0.8, delta: _delta, relativeValue: center)).stroke(lineWidth: 5).foregroundStyle(secondColor)
+            let e1 = ClockContentView.getPoint(radius: radius, value: hour, totalValue: 12, factor: 0.5, delta: _delta, relativeValue: center)
+            Pen(start: center, end: e1).stroke(lineWidth: 8).foregroundStyle(hourColor)
+            CircleShape(point: e1, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
+            let e2 = ClockContentView.getPoint(radius: radius, value: minute, totalValue: 60, factor: 0.65, delta: _delta, relativeValue: center)
+            Pen(start: center, end: e2).stroke(lineWidth: 6).foregroundStyle(minuteColor)
+            CircleShape(point: e2, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
+            let e3 = ClockContentView.getPoint(radius: radius, value: second, totalValue: 60, factor: 0.8, delta: _delta, relativeValue: center)
+            Pen(start: center, end: e3).stroke(lineWidth: 5).foregroundStyle(secondColor)
+            CircleShape(point: e3, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
         }else {
-            Pen(start: center, end: ClockContentView.getPoint(radius: radius, value: CGFloat(Int(ssecondTotal) % 1000), totalValue: 1000, factor: 0.6, delta: _delta, relativeValue: center), innerRadius: 2).stroke(lineWidth: 5).foregroundStyle(.white)
+            let end = ClockContentView.getPoint(radius: radius, value: CGFloat(Int(ssecondTotal) % 1000), totalValue: 1000, factor: 0.6, delta: _delta, relativeValue: center)
+            Pen(start: center, end: end).stroke(lineWidth: 5).foregroundStyle(.white)
+            CircleShape(point: end, radius: 2).stroke(lineWidth: 5).foregroundStyle(.white)
         }
         
         Circle().frame(width: innerRadius, height: innerRadius).position(center).onReceive(timer, perform: { _ in
