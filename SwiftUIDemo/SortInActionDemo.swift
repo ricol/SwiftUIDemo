@@ -116,7 +116,7 @@ struct SortMethod {
         await theLock.restore()
         return result
     }
- 
+    
     static func quickSort(data: inout [TElement], left: Int, right: Int, block: TFunc? = nil) async {
         await theLock.inOperation()
         if await theLock.isRequestedCancel() {

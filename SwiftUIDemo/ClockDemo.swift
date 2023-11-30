@@ -55,11 +55,11 @@ struct ClockDemo: View {
     var body: some View {
         ZStack {
             LinearGradient(colors: [.blue, .green], startPoint: .top, endPoint: .bottom)
-            Picker("Select timezone: ", selection: $selectedTimezone) {
-                ForEach(TimeZone.knownTimeZoneIdentifiers, id: \.self) {
-                    Text($0)
-                }
-            }.foregroundColor(.white).offset(CGSize(width: 0, height: -250))
+//            Picker("Select timezone: ", selection: $selectedTimezone) {
+//                ForEach(TimeZone.knownTimeZoneIdentifiers, id: \.self) {
+//                    Text($0)
+//                }
+//            }.foregroundColor(.white).offset(CGSize(width: 0, height: -250))
             ZStack {
                 Clock(timezone: timezone, center:  CGPoint(x: UIScreen.main.bounds.size.width / 2 + 60, y: UIScreen.main.bounds.size.height / 2 + 50), radius: 40, innerRadius: 10.0, bigClock: false,  digital: false)
                 Clock(timezone: timezone, center: CGPoint(x: UIScreen.main.bounds.size.width / 2, y: UIScreen.main.bounds.size.height / 2),
@@ -88,7 +88,7 @@ struct Clock: View {
     let _delta: CGFloat = -_pi / 2.0
     
     var body: some View {
-        ZStack {
+        return ZStack {
             if showTimezone {
                 if let data = timezone.identifier.split(separator: "/").last {
                     Text(String(data)).offset(CGSize(width: 0, height: -50.0))
@@ -131,17 +131,19 @@ struct ClockFrameView: View {
     var numberColor: Color
     
     var body: some View {
-        Circle().stroke(lineWidth: bigClock ? 5 : 2).frame(width: radius * 2, height: radius * 2).padding().position(center)
-        if bigClock {
-            ForEach(0...59, id: \.self) { n in
-                Dash(target: ClockContentView.getPoint(radius: radius, value: CGFloat(n), totalValue: 60, factor: 0.98, delta: 0, relativeValue: center), angle: CGFloat(n) / 60.0 * 2 * _pi, len: n == 0 || n == 15 || n == 30 || n == 45 ? 20 : 10).stroke(lineWidth: n % 5 == 0 ? 10 : 3).foregroundStyle(indicatorColor)
-            }
-            ForEach(1...12, id: \.self) { n in
-                Text("\(n)").font(.title).position(ClockContentView.getPoint(radius: radius, value: CGFloat(n), totalValue: 12, factor: 0.8, delta: _delta, relativeValue: center)).foregroundColor(numberColor)
-            }
-        }else {
-            ForEach(0...59, id: \.self) { n in
-                Dash(target: ClockContentView.getPoint(radius: radius, value: CGFloat(n), totalValue: 60, factor: 1, delta: 0, relativeValue: center), angle: CGFloat(n) / 60.0 * 2 * _pi, len: n == 0 || n == 15 || n == 30 || n == 45 ? 10 : 5).stroke(lineWidth: n == 0 || n == 15 || n == 30 || n == 45 ? 5 : 2).foregroundStyle(indicatorColor)
+        return ZStack {
+            Circle().stroke(lineWidth: bigClock ? 5 : 2).frame(width: radius * 2, height: radius * 2).padding().position(center)
+            if bigClock {
+                ForEach(0...59, id: \.self) { n in
+                    Dash(target: ClockContentView.getPoint(radius: radius, value: CGFloat(n), totalValue: 60, factor: 0.98, delta: 0, relativeValue: center), angle: CGFloat(n) / 60.0 * 2 * _pi, len: n == 0 || n == 15 || n == 30 || n == 45 ? 20 : 10).stroke(lineWidth: n % 5 == 0 ? 10 : 3).foregroundStyle(indicatorColor)
+                }
+                ForEach(1...12, id: \.self) { n in
+                    Text("\(n)").font(.title).position(ClockContentView.getPoint(radius: radius, value: CGFloat(n), totalValue: 12, factor: 0.8, delta: _delta, relativeValue: center)).foregroundColor(numberColor)
+                }
+            }else {
+                ForEach(0...59, id: \.self) { n in
+                    Dash(target: ClockContentView.getPoint(radius: radius, value: CGFloat(n), totalValue: 60, factor: 1, delta: 0, relativeValue: center), angle: CGFloat(n) / 60.0 * 2 * _pi, len: n == 0 || n == 15 || n == 30 || n == 45 ? 10 : 5).stroke(lineWidth: n == 0 || n == 15 || n == 30 || n == 45 ? 5 : 2).foregroundStyle(indicatorColor)
+                }
             }
         }
     }
@@ -168,36 +170,38 @@ struct ClockContentView: View {
     @State var ssecondTotal: CGFloat = 0
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     var body: some View {
-        if bigClock {
-            let e1 = ClockContentView.getPoint(radius: radius, value: hour, totalValue: 12, factor: 0.5, delta: _delta, relativeValue: center)
-            Pen(start: center, end: e1).stroke(lineWidth: 8).foregroundStyle(hourColor)
-            CircleShape(point: e1, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
-            let e2 = ClockContentView.getPoint(radius: radius, value: minute, totalValue: 60, factor: 0.65, delta: _delta, relativeValue: center)
-            Pen(start: center, end: e2).stroke(lineWidth: 6).foregroundStyle(minuteColor)
-            CircleShape(point: e2, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
-            let e3 = ClockContentView.getPoint(radius: radius, value: second, totalValue: 60, factor: 0.8, delta: _delta, relativeValue: center)
-            Pen(start: center, end: e3).stroke(lineWidth: 5).foregroundStyle(secondColor)
-            CircleShape(point: e3, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
-        }else {
-            let end = ClockContentView.getPoint(radius: radius, value: CGFloat(Int(ssecondTotal) % 1000), totalValue: 1000, factor: 0.6, delta: _delta, relativeValue: center)
-            Pen(start: center, end: end).stroke(lineWidth: 5).foregroundStyle(.white)
-            CircleShape(point: end, radius: 2).stroke(lineWidth: 5).foregroundStyle(.white)
-        }
-        
-        Circle().frame(width: innerRadius, height: innerRadius).position(center).onReceive(timer, perform: { _ in
-            var calendar = Calendar(identifier: .gregorian)
-            calendar.timeZone = timezone
-            var date = start
-            date = autoTimer ? start.addingTimeInterval(ssecondTotal / 100) : start
-            hour = CGFloat(calendar.component(.hour, from: date))
-            minute = CGFloat(calendar.component(.minute, from: date))
-            second = CGFloat(calendar.component(.second, from: date))
-            minute += second / 60
-            hour += minute / 60
-            ssecondTotal += 1
-        })
-        if digital {
-            Text("\(Int(hour)):\(Int(minute)):\(Int(second)).\(Int(Int(ssecondTotal) % 1000))").padding(.top, 500).font(.title).foregroundColor(numberColor)
+        return ZStack {
+            if bigClock {
+                let e1 = ClockContentView.getPoint(radius: radius, value: hour, totalValue: 12, factor: 0.5, delta: _delta, relativeValue: center)
+                Pen(start: center, end: e1).stroke(lineWidth: 8).foregroundStyle(hourColor)
+                CircleShape(point: e1, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
+                let e2 = ClockContentView.getPoint(radius: radius, value: minute, totalValue: 60, factor: 0.65, delta: _delta, relativeValue: center)
+                Pen(start: center, end: e2).stroke(lineWidth: 6).foregroundStyle(minuteColor)
+                CircleShape(point: e2, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
+                let e3 = ClockContentView.getPoint(radius: radius, value: second, totalValue: 60, factor: 0.8, delta: _delta, relativeValue: center)
+                Pen(start: center, end: e3).stroke(lineWidth: 5).foregroundStyle(secondColor)
+                CircleShape(point: e3, radius: 3).stroke(lineWidth: 5).foregroundStyle(.white)
+            }else {
+                let end = ClockContentView.getPoint(radius: radius, value: CGFloat(Int(ssecondTotal) % 1000), totalValue: 1000, factor: 0.6, delta: _delta, relativeValue: center)
+                Pen(start: center, end: end).stroke(lineWidth: 5).foregroundStyle(.white)
+                CircleShape(point: end, radius: 2).stroke(lineWidth: 5).foregroundStyle(.white)
+            }
+            
+            Circle().frame(width: innerRadius, height: innerRadius).position(center).onReceive(timer, perform: { _ in
+                var calendar = Calendar(identifier: .gregorian)
+                calendar.timeZone = timezone
+                var date = start
+                date = autoTimer ? start.addingTimeInterval(ssecondTotal / 100) : start
+                hour = CGFloat(calendar.component(.hour, from: date))
+                minute = CGFloat(calendar.component(.minute, from: date))
+                second = CGFloat(calendar.component(.second, from: date))
+                minute += second / 60
+                hour += minute / 60
+                ssecondTotal += 1
+            })
+            if digital {
+                Text("\(Int(hour)):\(Int(minute)):\(Int(second)).\(Int(Int(ssecondTotal) % 1000))").padding(.top, 500).font(.title).foregroundColor(numberColor)
+            }
         }
     }
     
