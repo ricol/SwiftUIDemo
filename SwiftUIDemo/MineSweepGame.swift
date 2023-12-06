@@ -11,7 +11,7 @@ class Mine: NSObject, Identifiable, ObservableObject {
     var id = UUID()
     var x: Int = 0
     var y: Int = 0
-    var isMine: Bool = (0...100).randomElement()! < 5
+    var isMine: Bool = (0...100).randomElement()! < 10
     @Published var flagged: Bool = false
     @Published var sweeped: Bool = false
     @Published var revealed: Bool = false
@@ -72,7 +72,7 @@ class Mine: NSObject, Identifiable, ObservableObject {
 }
 
 class MineGameModel: ObservableObject {
-    private var allowUpdate = false
+    private var allowUpdate = true
     var mines: [[Mine]] = [[Mine]]() {
         willSet {
             if allowUpdate { objectWillChange.send() }
