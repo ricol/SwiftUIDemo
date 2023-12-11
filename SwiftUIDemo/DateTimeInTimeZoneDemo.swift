@@ -24,6 +24,7 @@ class TimeZonesViewModel: ObservableObject {
     var allTimezones: [String] {
         TimeZone.knownTimeZoneIdentifiers
     }
+    var autoTick = false
     
     private var _continentsMapping: [String: [String]]?
     var continentsMapping: [String: [String]] {
@@ -82,6 +83,11 @@ struct DateTimeInTimeZoneDemo: View {
             }.padding(10).navigationTitle("TimeZone").onAppear() {
                 vm.date = Date()
             }.navigationBarTitleDisplayMode(.inline)
+                .toolbar(content: {
+                    Button("AutoTick") {
+                        vm.autoTick = !vm.autoTick
+                    }
+                })
         }
     }
 }
@@ -117,11 +123,11 @@ struct DisplayInOtherTimeZones: View {
                           numberColor: .black,
                           frameColor: .black,
                           autoTimer: false).frame(width: clockSize, height: clockSize)
-                    .scaleEffect(CGSize(width: scaleSize, height: scaleSize))
+                        .scaleEffect(CGSize(width: scaleSize, height: scaleSize))
                 }.frame(height: 100).padding(.top, 10).padding(.bottom, 10).padding(.trailing, 10)
             }
         }.onReceive(timer, perform: { _ in
-            vm.date = vm.date.addingTimeInterval(1)
+            if vm.autoTick { vm.date = vm.date.addingTimeInterval(1) }
         })
     }
 }
