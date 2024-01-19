@@ -30,8 +30,7 @@
 		D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF4C0A2B1051E000BAF347 /* MineSweepGame.swift */; };
 		D9CF4C0F2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF4C0E2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift */; };
 		D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */; };
-		D9F356FC2AFCC4FE00001ABD /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FB2AFCC4FE00001ABD /* WeatherView.swift */; };
-		D9F357002AFE2E1A00001ABD /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityView.swift */; };
+		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +61,7 @@
 		D9CF4C0A2B1051E000BAF347 /* MineSweepGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSweepGame.swift; sourceTree = "<group>"; };
 		D9CF4C0E2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeInTimeZoneDemo.swift; sourceTree = "<group>"; };
 		D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
-		D9F356FB2AFCC4FE00001ABD /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
-		D9F356FF2AFE2E1A00001ABD /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
+		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,8 +115,7 @@
 				D922D87C2B0EE89200B3A5FB /* AnimationDemo.swift */,
 				D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */,
 				D9CD30402B0219BA00F38F91 /* FormDemo.swift */,
-				D9F356FB2AFCC4FE00001ABD /* WeatherView.swift */,
-				D9F356FF2AFE2E1A00001ABD /* CityView.swift */,
+				D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */,
 				D9F357012B01CE4300001ABD /* MetroView.swift */,
 				D9CF4C0E2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift */,
 				D95DB6642B06088900FD0D4C /* MemorizeGame.swift */,
@@ -261,12 +258,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */,
-				D9F356FC2AFCC4FE00001ABD /* WeatherView.swift in Sources */,
 				D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */,
 				D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */,
 				D9CD30412B0219BA00F38F91 /* FormDemo.swift in Sources */,
 				D97A4ED42AF1F8B7002C6E15 /* RepresentableDemo.swift in Sources */,
-				D9F357002AFE2E1A00001ABD /* CityView.swift in Sources */,
+				D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */,
 				D95DB6632B05B43300FD0D4C /* constants.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
 				D922D85F2B0B43F500B3A5FB /* NumberGame.swift in Sources */,

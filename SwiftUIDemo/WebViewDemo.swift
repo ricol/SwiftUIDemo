@@ -25,121 +25,6 @@ func access(url: String) async -> String? {
     return result
 }
 
-typealias TVoid = () -> Void
-typealias TErrorVoid = (Error) -> Void
-
-struct WebView: UIViewRepresentable {
-    var url: String?
-    var html: String?
-    var delegate: WebViewDelegate = WebViewDelegate()
-    var onStart: TVoid?
-    var onFinished: TVoid?
-    var onError: TErrorVoid?
-    
-    func makeUIView(context: Context) -> WKWebView {
-        let w = WKWebView()
-        w.navigationDelegate = delegate
-        delegate.onStart = onStart
-        delegate.onFinished = onFinished
-        delegate.onError = onError
-        return w
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        if let html {
-            print("loading html...\(html)")
-            var s: URL? = nil
-            if let url = url {
-                s = URL(string: url)
-            }
-            uiView.navigationDelegate = nil
-            uiView.loadHTMLString(html, baseURL: s)
-            print("end loading html.")
-        }else if let url {
-            print("loading url...")
-            uiView.navigationDelegate = delegate
-            uiView.load(URLRequest(url: URL(string: url)!))
-            print("end loading url.")
-        }
-    }
-    
-    typealias UIViewType = WKWebView
-    
-    class WebViewDelegate: NSObject, WKNavigationDelegate {
-        var onStart: TVoid?
-        var onFinished: TVoid?
-        var onError: TErrorVoid?
-        
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            print("webView...finished.")
-            onFinished?()
-        }
-        
-        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-            print("webView...didFail.")
-            onError?(error)
-        }
-        
-        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-            print("webView...didStartProvisionalNavigation.")
-            onStart?()
-        }
-    }
-}
-
-struct URLContentView: View {
-    var URL: String?
-    @State var content: String?
-    @State var isLoading = false
-    var body: some View {
-        VStack {
-            ZStack {
-                if let content, content.count > 0 {
-                    MyHtmlWebView(html: content, url: URL, isShowing: isLoading)
-                }else if !isLoading {
-                    Text("Empty!")
-                }
-                ActivityIndicatorView(isShowing: isLoading, color: .blue)
-            }
-        }.task {
-            isLoading = true
-            let t = Task.detached {
-                let v = await access(url: URL!)
-                return v
-            }
-            content = await t.value
-            isLoading = false
-        }.navigationTitle("Content")
-    }
-}
-
-struct MyWebView: View {
-    var url: String?
-    @State var isShowing: Bool = false
-    var body: some View {
-        WebView(url: url, onStart: {
-            isShowing = true
-        }, onFinished: {
-            isShowing = false
-        }, onError: { e in
-            isShowing = false
-        }).navigationTitle("Web").toolbar(content: {
-            ActivityIndicatorView(isShowing: isShowing, color: .black)
-        })
-    }
-}
-
-struct MyHtmlWebView: View {
-    var html: String?
-    var url: String?
-    @State var isShowing: Bool = false
-    var body: some View {
-        WebView(url: url, html: html, onStart: { isShowing = true }, onFinished: { isShowing = false }, onError: {_ in isShowing = false }).navigationTitle("HTML").toolbar(content: {
-            ActivityIndicatorView(isShowing: isShowing, color: .black)
-        })
-    }
-}
-
 struct WebViewDemo: View {
     @State var data: String?
     @State var urls = ["https://www.baidu.com",
@@ -187,6 +72,121 @@ struct WebViewDemo: View {
             } else {
                 Text("Empty")
             }
+        }
+    }
+    
+    typealias TVoid = () -> Void
+    typealias TErrorVoid = (Error) -> Void
+
+    struct WebView: UIViewRepresentable {
+        var url: String?
+        var html: String?
+        var delegate: WebViewDelegate = WebViewDelegate()
+        var onStart: TVoid?
+        var onFinished: TVoid?
+        var onError: TErrorVoid?
+        
+        func makeUIView(context: Context) -> WKWebView {
+            let w = WKWebView()
+            w.navigationDelegate = delegate
+            delegate.onStart = onStart
+            delegate.onFinished = onFinished
+            delegate.onError = onError
+            return w
+        }
+        
+        func updateUIView(_ uiView: WKWebView, context: Context) {
+            if let html {
+                print("loading html...\(html)")
+                var s: URL? = nil
+                if let url = url {
+                    s = URL(string: url)
+                }
+                uiView.navigationDelegate = nil
+                uiView.loadHTMLString(html, baseURL: s)
+                print("end loading html.")
+            }else if let url {
+                print("loading url...")
+                uiView.navigationDelegate = delegate
+                uiView.load(URLRequest(url: URL(string: url)!))
+                print("end loading url.")
+            }
+        }
+        
+        typealias UIViewType = WKWebView
+        
+        class WebViewDelegate: NSObject, WKNavigationDelegate {
+            var onStart: TVoid?
+            var onFinished: TVoid?
+            var onError: TErrorVoid?
+            
+            func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+                print("webView...finished.")
+                onFinished?()
+            }
+            
+            func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+                print("webView...didFail.")
+                onError?(error)
+            }
+            
+            func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+                print("webView...didStartProvisionalNavigation.")
+                onStart?()
+            }
+        }
+    }
+
+    struct URLContentView: View {
+        var URL: String?
+        @State var content: String?
+        @State var isLoading = false
+        var body: some View {
+            VStack {
+                ZStack {
+                    if let content, content.count > 0 {
+                        MyHtmlWebView(html: content, url: URL, isShowing: isLoading)
+                    }else if !isLoading {
+                        Text("Empty!")
+                    }
+                    ActivityIndicatorView(isShowing: isLoading, color: .blue)
+                }
+            }.task {
+                isLoading = true
+                let t = Task.detached {
+                    let v = await access(url: URL!)
+                    return v
+                }
+                content = await t.value
+                isLoading = false
+            }.navigationTitle("Content")
+        }
+    }
+
+    struct MyWebView: View {
+        var url: String?
+        @State var isShowing: Bool = false
+        var body: some View {
+            WebView(url: url, onStart: {
+                isShowing = true
+            }, onFinished: {
+                isShowing = false
+            }, onError: { e in
+                isShowing = false
+            }).navigationTitle("Web").toolbar(content: {
+                ActivityIndicatorView(isShowing: isShowing, color: .black)
+            })
+        }
+    }
+
+    struct MyHtmlWebView: View {
+        var html: String?
+        var url: String?
+        @State var isShowing: Bool = false
+        var body: some View {
+            WebView(url: url, html: html, onStart: { isShowing = true }, onFinished: { isShowing = false }, onError: {_ in isShowing = false }).navigationTitle("HTML").toolbar(content: {
+                ActivityIndicatorView(isShowing: isShowing, color: .black)
+            })
         }
     }
 }

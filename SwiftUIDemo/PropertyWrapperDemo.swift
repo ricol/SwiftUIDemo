@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-fileprivate class Book: ObservableObject {
-    @Published var title = "A sample book"
-    var isAvailable = true
-}
-
-@Observable
-fileprivate class Book1 {
-    var title = "A sample book"
-    var isAvailable = true
-}
-
-fileprivate struct Name {
-    var text: String
-}
-
-fileprivate class Data {
-    var value: String = "data"
-}
-
 struct PropertyWrapperDemo: View {
     @StateObject private var book = Book()
     @State private var book1 = Book1()
@@ -88,36 +69,55 @@ struct PropertyWrapperDemo: View {
             }
         }
     }
-}
-
-fileprivate struct BookTitleEditViewBinding: View {
-    @ObservedObject var book: Book
-    var body: some View {
-            TextField("title", text: $book.title)
+    
+    fileprivate class Book: ObservableObject {
+        @Published var title = "A sample book"
+        var isAvailable = true
     }
-}
 
-fileprivate struct BookTitleEditView: View {
-    @Bindable var book: Book1
-    var body: some View {
-            TextField("title", text: $book.title)
+    @Observable
+    fileprivate class Book1 {
+        var title = "A sample book"
+        var isAvailable = true
     }
-}
 
-
-fileprivate struct BookView: View {
-    @ObservedObject var book: Book
-
-    var body: some View {
-        Text(book.title)
+    fileprivate struct Name {
+        var text: String
     }
-}
 
-fileprivate struct BookView1: View {
-     var book: Book1
+    fileprivate class Data {
+        var value: String = "data"
+    }
+    
+    fileprivate struct BookTitleEditViewBinding: View {
+        @ObservedObject var book: Book
+        var body: some View {
+                TextField("title", text: $book.title)
+        }
+    }
 
-    var body: some View {
-        Text(book.title)
+    fileprivate struct BookTitleEditView: View {
+        @Bindable var book: Book1
+        var body: some View {
+                TextField("title", text: $book.title)
+        }
+    }
+
+
+    fileprivate struct BookView: View {
+        @ObservedObject var book: Book
+
+        var body: some View {
+            Text(book.title)
+        }
+    }
+
+    fileprivate struct BookView1: View {
+         var book: Book1
+
+        var body: some View {
+            Text(book.title)
+        }
     }
 }
 

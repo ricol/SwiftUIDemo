@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-enum Focused {
-    case firstname, lastname, email
-}
-
-class PersonDetail: ObservableObject {
-    @AppStorage("firstname") var firstname: String = ""
-    @AppStorage("lastname") var lastname: String = ""
-    @AppStorage("email") var email: String = ""
-    @Published var dob: Date = Date()
-    
-    func clear() {
-        firstname = ""
-        lastname = ""
-        email = ""
-    }
-}
-
 struct FormDemo: View {
     @StateObject var p = PersonDetail()
     @FocusState var focusedTF: Focused?
@@ -77,7 +60,7 @@ struct FormDemo: View {
                             Image(systemName: "paperplane.fill")
                         }
                     }
-
+                    
                 }
             }.navigationTitle("Form").toolbar {
                 Button("Clear") {
@@ -87,16 +70,33 @@ struct FormDemo: View {
         }.background(.blue).ignoresSafeArea()
         DetailsView(p: p)
     }
-}
-
-struct DetailsView: View {
-    @ObservedObject var p: PersonDetail
     
-    var body: some View {
-        VStack {
-            Text("Name: " + (p.firstname + " " + p.lastname).capitalized)
-            Text("Email: \(p.email)")
-        }.font(.title2).padding()
+    struct DetailsView: View {
+        @ObservedObject var p: PersonDetail
+        
+        var body: some View {
+            VStack {
+                Text("Name: " + (p.firstname + " " + p.lastname).capitalized)
+                Text("Email: \(p.email)")
+            }.font(.title2).padding()
+        }
+    }
+    
+    enum Focused {
+        case firstname, lastname, email
+    }
+
+    class PersonDetail: ObservableObject {
+        @AppStorage("firstname") var firstname: String = ""
+        @AppStorage("lastname") var lastname: String = ""
+        @AppStorage("email") var email: String = ""
+        @Published var dob: Date = Date()
+        
+        func clear() {
+            firstname = ""
+            lastname = ""
+            email = ""
+        }
     }
 }
 

@@ -20,6 +20,7 @@ struct Constants {
                                    "wind.snow", "snowflake"]
     static let degreeSymbol = "°"
     static let colors: [Color] = [.red, .blue, .green, .orange, .cyan, .brown]
+    static let allColors: [Color] = [.red, .blue, .yellow, .green, .brown, .purple, .cyan, .indigo, .mint, .pink]
     static let cities = ["su zhou", "chang sha", "bei jing", "he fei", "nan jing", "shang hai", "hang zhou"]
     static let urls = ["https://www.baidu.com",
                 "https://www.bing.com",
@@ -27,4 +28,5 @@ struct Constants {
                 "https://www.sohu.com",
                 "https://www.china.com",
                 "https://www.qq.com"]
+    static let PI: CGFloat = 3.1415216
 }
