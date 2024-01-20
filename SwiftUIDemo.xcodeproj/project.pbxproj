@@ -24,7 +24,6 @@
 		D9CD30662B048EE800F38F91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CD30652B048EE800F38F91 /* ContentView.swift */; };
 		D9CD30682B048EEB00F38F91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9CD30672B048EEB00F38F91 /* Assets.xcassets */; };
 		D9CD306B2B048EEB00F38F91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9CD306A2B048EEB00F38F91 /* Preview Assets.xcassets */; };
-		D9CD30712B04913500F38F91 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CD30702B04913500F38F91 /* ActivityIndicatorView.swift */; };
 		D9CD30772B04B71D00F38F91 /* SortInActionDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CD30762B04B71C00F38F91 /* SortInActionDemo.swift */; };
 		D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF4C082B0F2C3E00BAF347 /* AsyncActorDemo.swift */; };
 		D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF4C0A2B1051E000BAF347 /* MineSweepGame.swift */; };
@@ -32,6 +31,7 @@
 		D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */; };
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
+		EDC466B52B5ABA3600E4BAF7 /* LayoutDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B42B5ABA3600E4BAF7 /* LayoutDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,6 @@
 		D9CD30672B048EEB00F38F91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9CD306A2B048EEB00F38F91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9CD306C2B048EEB00F38F91 /* MyMacApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyMacApp.entitlements; sourceTree = "<group>"; };
-		D9CD30702B04913500F38F91 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		D9CD30762B04B71C00F38F91 /* SortInActionDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortInActionDemo.swift; sourceTree = "<group>"; };
 		D9CF4C082B0F2C3E00BAF347 /* AsyncActorDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncActorDemo.swift; sourceTree = "<group>"; };
 		D9CF4C0A2B1051E000BAF347 /* MineSweepGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSweepGame.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
+		EDC466B42B5ABA3600E4BAF7 /* LayoutDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,6 @@
 				D97A4EC72AEF5565002C6E15 /* PropertyWrapperDemo.swift */,
 				D97A4ED32AF1F8B7002C6E15 /* RepresentableDemo.swift */,
 				D9CD30422B03202600F38F91 /* WebViewDemo.swift */,
-				D9CD30702B04913500F38F91 /* ActivityIndicatorView.swift */,
 				D922D87C2B0EE89200B3A5FB /* AnimationDemo.swift */,
 				D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */,
 				D9CD30402B0219BA00F38F91 /* FormDemo.swift */,
@@ -125,6 +124,7 @@
 				D922D87A2B0DECFB00B3A5FB /* ClockDemo.swift */,
 				D9CF4C082B0F2C3E00BAF347 /* AsyncActorDemo.swift */,
 				D9CD30462B04648500F38F91 /* AsyncCallDemo.swift */,
+				EDC466B42B5ABA3600E4BAF7 /* LayoutDemo.swift */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -271,11 +271,11 @@
 				D9CD30772B04B71D00F38F91 /* SortInActionDemo.swift in Sources */,
 				D97A4EC62AEF5565002C6E15 /* SwiftUIDemoApp.swift in Sources */,
 				D9CF4C0F2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift in Sources */,
+				EDC466B52B5ABA3600E4BAF7 /* LayoutDemo.swift in Sources */,
 				D9CD30432B03202600F38F91 /* WebViewDemo.swift in Sources */,
 				D922D87B2B0DECFB00B3A5FB /* ClockDemo.swift in Sources */,
 				D95DB6652B06088900FD0D4C /* MemorizeGame.swift in Sources */,
 				D9CD30472B04648500F38F91 /* AsyncCallDemo.swift in Sources */,
-				D9CD30712B04913500F38F91 /* ActivityIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

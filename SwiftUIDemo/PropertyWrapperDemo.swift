@@ -24,48 +24,70 @@ struct PropertyWrapperDemo: View {
                     Text(name.text)
                 }
             }
-            Section("State on Class") {
-                VStack(alignment: .leading) {
-                    Button("Change @State a.property") {
-                        a.value += a.value
+            Section("Button Issues in Form") {
+                VStack(alignment: .leading, content: {
+                    Button("Button A") {
+                        print("a...")
                     }
-                    Text(a.value)
-                    Divider()
-                    Button("Change @State b") {
-                        let old = b
-                        b = Data()
-                        b.value += old.value
+                    Button("Button B") {
+                        print("b...")
                     }
-                    Text(b.value)
-                }
+                    Button("Button C") {
+                        print("c...")
+                    }
+                })
             }
+            
+            Section("Change @State a.property on class") {
+                Button("Change") {
+                    a.value += a.value
+                    print("changed. \(a.value)")
+                }
+                Text(a.value)
+            }
+            
+            Section("Change @State b on class") {
+                Button("Change") {
+                    b = Data()
+                    b.value += " updated."
+                }
+                Text(b.value)
+            }
+            
+            Section("Reset @State b on class") {
+                Button("Rest") {
+                    b = Data()
+                }
+                Text(b.value)
+            }
+            
             Section("@Observable") {
                 VStack(alignment: .leading) {
                     Button("update book") {
-                        book.title = "changed book title"
+                        book.title += "changed book title"
                     }
-                    BookView(book: book)
+                    BookViewForObservedObjectBook(book: book)
                 }
             }
-            Section("ObservableObject") {
+            Section("NOObservableObject") {
                 VStack(alignment: .leading) {
                     Button("update book") {
-                        book1.title = "changed book1 title"
+                        book1.title += "changed book1 title"
                     }
-                    BookView1(book: book1)
+                    BookViewWithoutObservedObject(book: book1)
                 }
             }
             Section("ObservedObject") {
                 VStack(alignment: .leading) {
                     TextField("title", text: $book.title)
-                    BookTitleEditViewBinding(book: book)
+                    BookTitleEditViewBindingWithObservedObject(book: book)
                 }
             }
             Section("Binding") {
                 
             }
             Section("Bindable") {
-                BookTitleEditView(book: book1)
+                BookTitleEditViewWithBindable(book: book1)
             }
         }
     }
@@ -89,14 +111,14 @@ struct PropertyWrapperDemo: View {
         var value: String = "data"
     }
     
-    fileprivate struct BookTitleEditViewBinding: View {
+    fileprivate struct BookTitleEditViewBindingWithObservedObject: View {
         @ObservedObject var book: Book
         var body: some View {
                 TextField("title", text: $book.title)
         }
     }
 
-    fileprivate struct BookTitleEditView: View {
+    fileprivate struct BookTitleEditViewWithBindable: View {
         @Bindable var book: Book1
         var body: some View {
                 TextField("title", text: $book.title)
@@ -104,7 +126,7 @@ struct PropertyWrapperDemo: View {
     }
 
 
-    fileprivate struct BookView: View {
+    fileprivate struct BookViewForObservedObjectBook: View {
         @ObservedObject var book: Book
 
         var body: some View {
@@ -112,7 +134,7 @@ struct PropertyWrapperDemo: View {
         }
     }
 
-    fileprivate struct BookView1: View {
+    fileprivate struct BookViewWithoutObservedObject: View {
          var book: Book1
 
         var body: some View {
