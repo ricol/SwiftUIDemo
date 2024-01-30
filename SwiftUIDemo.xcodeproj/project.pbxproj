@@ -31,6 +31,7 @@
 		D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */; };
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
+		ED86A3352B691037000AD6A3 /* EscapeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86A3342B691037000AD6A3 /* EscapeGame.swift */; };
 		EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
+		ED86A3342B691037000AD6A3 /* EscapeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeGame.swift; sourceTree = "<group>"; };
 		EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 				D9CF4C082B0F2C3E00BAF347 /* AsyncActorDemo.swift */,
 				D9CD30462B04648500F38F91 /* AsyncCallDemo.swift */,
 				EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */,
+				ED86A3342B691037000AD6A3 /* EscapeGame.swift */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */,
 				D9CD30412B0219BA00F38F91 /* FormDemo.swift in Sources */,
 				D97A4ED42AF1F8B7002C6E15 /* RepresentableDemo.swift in Sources */,
+				ED86A3352B691037000AD6A3 /* EscapeGame.swift in Sources */,
 				D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */,
 				D95DB6632B05B43300FD0D4C /* constants.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
