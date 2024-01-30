@@ -7,7 +7,34 @@
 
 import SwiftUI
 
-public func solution(_ B : inout [String], PosX: Binding<Int>, PosY: Binding<Int>) async -> Bool {
+let SLEEP = 200_000_000
+let data = ["..........",
+            ".>...x..x.",
+            "...x......",
+            ".....^....",
+            ".....v....",
+            "..........",
+            ".....>..x.",
+            ".....>..x.",
+            ".....>..x.",
+            "..........",
+            ".x...<.>.x",
+            ".......v..",
+            ".x...<...x",
+            "...^...x..",
+            ".x...<...x",
+            "...>..x...",
+            ".>....xxx.",
+            ".....^..x.",
+            ".x.<....x.",
+            "..x...<x..",
+            "....x...^.",
+            "....x.....",
+            "....x.....",
+            ".A..x.x.<x",
+            "....x....."]
+
+public func solution(_ B : inout [String], PosX: Binding<Int>, PosY: Binding<Int>, visited: Binding<[String: Bool]>, stack: Binding<[(Int, Int)]>) async -> Bool {
     // Implement your solution here
     let MAX_X: Int = B.count - 1
     let MAX_Y: Int = (B.first?.count ?? 1) - 1
@@ -87,39 +114,37 @@ public func solution(_ B : inout [String], PosX: Binding<Int>, PosY: Binding<Int
         }
     }
     guard let x = x, let y = y else { return false }
-    var stack = [(Int, Int)]()
-    var visited = [String: Bool]()
-    stack.append((x, y))
+    stack.wrappedValue.append((x, y))
     var currentX = x
     var currentY = y
     var canContinue = false
     while !stack.isEmpty {
-        (currentX, currentY) = stack.popLast()!
+        (currentX, currentY) = stack.wrappedValue.popLast()!
         PosX.wrappedValue = currentX
         PosY.wrappedValue = currentY
         canContinue = true
         while canContinue {
-            try! await Task.sleep(nanoseconds: 100_000_000)
+            try! await Task.sleep(nanoseconds: UInt64(SLEEP))
             print("next...\(Date()), currentX: \(currentX), currentY: \(currentY)")
-            if isPossible(x: currentX + 1, y: currentY) && visited["\(currentX + 1)_\(currentY)"] == nil && guarded["\(currentX + 1)_\(currentY)"] == nil {
-                stack.append((currentX + 1, currentY))
+            if isPossible(x: currentX + 1, y: currentY) && visited.wrappedValue["\(currentX + 1)_\(currentY)"] == nil && guarded["\(currentX + 1)_\(currentY)"] == nil {
+                stack.wrappedValue.append((currentX + 1, currentY))
                 currentX += 1
-                visited["\(currentX)_\(currentY)"] = true
+                visited.wrappedValue["\(currentX)_\(currentY)"] = true
                 canContinue = true
-            }else if isPossible(x: currentX, y: currentY + 1) && visited["\(currentX)_\(currentY + 1)"] == nil && guarded["\(currentX)_\(currentY + 1)"] == nil {
-                stack.append((currentX, currentY + 1))
+            }else if isPossible(x: currentX, y: currentY + 1) && visited.wrappedValue["\(currentX)_\(currentY + 1)"] == nil && guarded["\(currentX)_\(currentY + 1)"] == nil {
+                stack.wrappedValue.append((currentX, currentY + 1))
                 currentY += 1
-                visited["\(currentX)_\(currentY)"] = true
+                visited.wrappedValue["\(currentX)_\(currentY)"] = true
                 canContinue = true
-            }else if isPossible(x: currentX, y: currentY - 1) && visited["\(currentX)_\(currentY - 1)"] == nil && guarded["\(currentX)_\(currentY - 1)"] == nil {
-                stack.append((currentX, currentY - 1))
+            }else if isPossible(x: currentX, y: currentY - 1) && visited.wrappedValue["\(currentX)_\(currentY - 1)"] == nil && guarded["\(currentX)_\(currentY - 1)"] == nil {
+                stack.wrappedValue.append((currentX, currentY - 1))
                 currentY -= 1
-                visited["\(currentX)_\(currentY)"] = true
+                visited.wrappedValue["\(currentX)_\(currentY)"] = true
                 canContinue = true
-            }else if isPossible(x: currentX - 1, y: currentY) && visited["\(currentX - 1)_\(currentY)"] == nil && guarded["\(currentX - 1)_\(currentY)"] == nil  {
-                stack.append((currentX - 1, currentY))
+            }else if isPossible(x: currentX - 1, y: currentY) && visited.wrappedValue["\(currentX - 1)_\(currentY)"] == nil && guarded["\(currentX - 1)_\(currentY)"] == nil  {
+                stack.wrappedValue.append((currentX - 1, currentY))
                 currentX -= 1
-                visited["\(currentX)_\(currentY)"] = true
+                visited.wrappedValue["\(currentX)_\(currentY)"] = true
                 canContinue = true
             }else {
                 canContinue = false
@@ -156,32 +181,16 @@ struct EscapeGame: View {
     @State var y: Int = 0
     @State var state: String = "ready"
     let size: CGFloat = 24
-    let data = ["..........",
-                ".>...x..x.",
-                "...x......",
-                ".....^....",
-                ".....v....",
-                "..........",
-                ".....>..x.",
-                ".....>..x.",
-                ".....>..x.",
-                "..........",
-                ".x...<...x",
-                "..........",
-                ".x...<...x",
-                "...^......",
-                ".x...<...x",
-                "...>..x...",
-                ".>....xxx.",
-                ".....^..x.",
-                ".x.<....x.",
-                ".......x..",
-                "....x.....",
-                "....x...^.",
-                "....x..x..",
-                ".A..x..x..",
-                "....x...<."]
     @State var board: [[Item]] = [[Item]]()
+    @State var visited = [String: Bool]()
+    @State var stack = [(Int, Int)]()
+    
+    func isInPath(x: Int, y: Int) -> Bool {
+        for (i, j) in stack {
+            if i == x && y == j { return true }
+        }
+        return false
+    }
         
     var body: some View {
         NavigationView {
@@ -190,7 +199,11 @@ struct EscapeGame: View {
                 LazyVGrid(columns: [GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size))], content: {
                     ForEach(board, id: \.self) { i in
                         ForEach(i, id: \.self) { j in
-                            Text(j.value).padding(.horizontal, 5).background(j.x == x && j.y == y ? .red : .clear)
+                            if isInPath(x: j.x, y: j.y) {
+                                Text(j.value).padding(.horizontal, 5).background(.blue)
+                            }else {
+                                Text(j.value).padding(.horizontal, 5).background((j.x == x && j.y == y ? .red : (visited["\(j.x)_\(j.y)"] == nil ? .clear : .yellow)))
+                            }
                         }
                     }
                 })
@@ -203,6 +216,8 @@ struct EscapeGame: View {
                 }.padding()
             }.toolbar(content: {
                 Button("Go") {
+                    visited.removeAll()
+                    stack.removeAll()
                     Task {
                         var b = [String]()
                         board.forEach { e in
@@ -214,7 +229,7 @@ struct EscapeGame: View {
                         }
                         print(b)
                         state = "running..."
-                        let result = await solution(&b, PosX: $x, PosY: $y)
+                        let result = await solution(&b, PosX: $x, PosY: $y, visited: $visited, stack: $stack)
                         print(result)
                         state = result ? "succeed" : "fail"
                     }
