@@ -10,19 +10,10 @@ import SwiftUI
 let SLEEP = 200_000_000
 let data = ["..........",
             ".>...x..x.",
-            "...x......",
+            "...x....<.",
             ".....^....",
-            ".....v....",
-            "..........",
-            ".....>..x.",
-            ".....>..x.",
-            ".....>..x.",
-            "..........",
-            ".x...<.>.x",
-            ".......v..",
-            ".x...<...x",
-            "...^...x..",
-            ".x...<...x",
+            ".....v.>..",
+            "...>.x..x.",
             "...>..x...",
             ".>....xxx.",
             ".....^..x.",
@@ -34,7 +25,7 @@ let data = ["..........",
             ".A..x.x.<x",
             "....x....."]
 
-public func solution(_ B : inout [String], PosX: Binding<Int>, PosY: Binding<Int>, visited: Binding<[String: Bool]>, stack: Binding<[(Int, Int)]>) async -> Bool {
+public func solution(_ B : inout [String], PosX: Binding<Int?>, PosY: Binding<Int?>, visited: Binding<[String: Bool]>, stack: Binding<[(Int, Int)]>) async -> Bool {
     // Implement your solution here
     let MAX_X: Int = B.count - 1
     let MAX_Y: Int = (B.first?.count ?? 1) - 1
@@ -177,13 +168,13 @@ extension Character {
 }
 
 struct EscapeGame: View {
-    @State var x: Int = 0
-    @State var y: Int = 0
+    @State var x: Int?
+    @State var y: Int?
     @State var state: String = "ready"
-    let size: CGFloat = 24
     @State var board: [[Item]] = [[Item]]()
     @State var visited = [String: Bool]()
     @State var stack = [(Int, Int)]()
+    let space: CGFloat = 10
     
     func isInPath(x: Int, y: Int) -> Bool {
         for (i, j) in stack {
@@ -194,23 +185,37 @@ struct EscapeGame: View {
         
     var body: some View {
         NavigationView {
-            VStack {
-                Divider()
-                LazyVGrid(columns: [GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size)), GridItem(.fixed(size))], content: {
-                    ForEach(board, id: \.self) { i in
-                        ForEach(i, id: \.self) { j in
-                            if isInPath(x: j.x, y: j.y) {
-                                Text(j.value).padding(.horizontal, 5).background(.blue)
-                            }else {
-                                Text(j.value).padding(.horizontal, 5).background((j.x == x && j.y == y ? .red : (visited["\(j.x)_\(j.y)"] == nil ? .clear : .yellow)))
-                            }
+            VStack(spacing: 0) {
+                GeometryReader { proxy in
+                    let w = (proxy.size.width - space * 9) / 10
+                    VStack(spacing: 0) {
+                        Divider()
+                        ScrollView(.vertical) {
+                            LazyVGrid(columns: [
+                                GridItem(.fixed(w), spacing: space), GridItem(.fixed(w), spacing: space),
+                                GridItem(.fixed(w), spacing: space), GridItem(.fixed(w), spacing: space),
+                                GridItem(.fixed(w), spacing: space), GridItem(.fixed(w), spacing: space),
+                                GridItem(.fixed(w), spacing: space), GridItem(.fixed(w), spacing: space),
+                                GridItem(.fixed(w), spacing: space), GridItem(.fixed(w), spacing: space)], spacing: space, content: {
+                                ForEach(board, id: \.self) { i in
+                                    ForEach(i, id: \.self) { j in
+                                        if isInPath(x: j.x, y: j.y) {
+                                            Text(j.value).frame(width: w, height: w).background(.blue)
+                                        }else {
+                                            Text(j.value).frame(width: w, height: w).background((j.x == x && j.y == y ? .red : (visited["\(j.x)_\(j.y)"] == nil ? (j.x == board.count - 1 && j.y == board[0].count - 1 ? .blue : .clear) : .yellow)))
+                                        }
+                                    }
+                                }
+                            })
                         }
                     }
-                })
+                }
                 Spacer()
                 Divider()
                 HStack {
-                    Text("x: \(x), y: \(y)")
+                    if let x = x, let y = y {
+                        Text("x: \(x), y: \(y)")
+                    }
                     Spacer()
                     Text(state)
                 }.padding()
