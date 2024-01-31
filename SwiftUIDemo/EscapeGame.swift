@@ -187,7 +187,7 @@ struct EscapeGame: View {
         NavigationView {
             VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    let w = (proxy.size.width - space * 9) / 10
+                    let w = (proxy.size.width - space * 9 - 2 * 10) / 10
                     VStack(spacing: 0) {
                         Divider()
                         ScrollView(.vertical) {
@@ -202,13 +202,13 @@ struct EscapeGame: View {
                                         if isInPath(x: j.x, y: j.y) {
                                             Text(j.value).frame(width: w, height: w).background(.blue)
                                         }else {
-                                            Text(j.value).frame(width: w, height: w).background((j.x == x && j.y == y ? .red : (visited["\(j.x)_\(j.y)"] == nil ? (j.x == board.count - 1 && j.y == board[0].count - 1 ? .blue : .clear) : .yellow)))
+                                            Text(j.value).frame(width: w, height: w).background((j.x == x && j.y == y ? .red : (visited["\(j.x)_\(j.y)"] == nil ? (j.x == board.count - 1 && j.y == board[0].count - 1 ? .green : .clear) : .yellow)))
                                         }
                                     }
                                 }
                             })
                         }
-                    }
+                    }.padding(10)
                 }
                 Spacer()
                 Divider()
