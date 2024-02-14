@@ -110,7 +110,7 @@ public func solution(_ B : inout [String], PosX: Binding<Int?>, PosY: Binding<In
     var currentY = y
     var canContinue = false
     while !stack.isEmpty {
-        (currentX, currentY) = stack.wrappedValue.popLast()!
+        (currentX, currentY) = stack.wrappedValue.last!
         PosX.wrappedValue = currentX
         PosY.wrappedValue = currentY
         canContinue = true
@@ -139,6 +139,7 @@ public func solution(_ B : inout [String], PosX: Binding<Int?>, PosY: Binding<In
                 canContinue = true
             }else {
                 canContinue = false
+                stack.wrappedValue.popLast()
             }
             PosX.wrappedValue = currentX
             PosY.wrappedValue = currentY

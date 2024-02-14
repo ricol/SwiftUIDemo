@@ -12,7 +12,8 @@ struct SwiftUIDemoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            DateTimeInTimeZoneDemo()
+//            DateTimeInTimeZoneDemo()
+            EscapeGame()
         }
     }
 }

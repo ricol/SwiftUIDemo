@@ -32,6 +32,7 @@
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
 		ED86A3352B691037000AD6A3 /* EscapeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86A3342B691037000AD6A3 /* EscapeGame.swift */; };
+		ED86A3372B6A55CA000AD6A3 /* ShapeDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86A3362B6A55CA000AD6A3 /* ShapeDemo.swift */; };
 		EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
 		ED86A3342B691037000AD6A3 /* EscapeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeGame.swift; sourceTree = "<group>"; };
+		ED86A3362B6A55CA000AD6A3 /* ShapeDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeDemo.swift; sourceTree = "<group>"; };
 		EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 				D9CD30462B04648500F38F91 /* AsyncCallDemo.swift */,
 				EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */,
 				ED86A3342B691037000AD6A3 /* EscapeGame.swift */,
+				ED86A3362B6A55CA000AD6A3 /* ShapeDemo.swift */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */,
 				D95DB6632B05B43300FD0D4C /* constants.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
+				ED86A3372B6A55CA000AD6A3 /* ShapeDemo.swift in Sources */,
 				D922D85F2B0B43F500B3A5FB /* NumberGame.swift in Sources */,
 				D922D87D2B0EE89200B3A5FB /* AnimationDemo.swift in Sources */,
 				D9F357022B01CE4300001ABD /* MetroView.swift in Sources */,
