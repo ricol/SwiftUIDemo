@@ -25,7 +25,7 @@ let data = ["..........",
             ".A..x.x.<x",
             "....x....."]
 
-public func solution(_ B : inout [String], PosX: Binding<Int?>, PosY: Binding<Int?>, visited: Binding<[String: Bool]>, stack: Binding<[(Int, Int)]>) async -> Bool {
+public func solution(_ B : inout [String], PosX: Binding<Int?>, PosY: Binding<Int?>, visited: Binding<[String: Bool]>, stack: Binding<[(Int, Int)]>, recursive: Bool) async -> Bool {
     // Implement your solution here
     let MAX_X: Int = B.count - 1
     let MAX_Y: Int = (B.first?.count ?? 1) - 1
@@ -105,48 +105,67 @@ public func solution(_ B : inout [String], PosX: Binding<Int?>, PosY: Binding<In
         }
     }
     guard let x = x, let y = y else { return false }
-    stack.wrappedValue.append((x, y))
-    var currentX = x
-    var currentY = y
-    var canContinue = false
-    while !stack.isEmpty {
-        (currentX, currentY) = stack.wrappedValue.last!
-        PosX.wrappedValue = currentX
-        PosY.wrappedValue = currentY
-        canContinue = true
-        while canContinue {
-            try! await Task.sleep(nanoseconds: UInt64(SLEEP))
-            print("next...\(Date()), currentX: \(currentX), currentY: \(currentY)")
-            if isPossible(x: currentX + 1, y: currentY) && visited.wrappedValue["\(currentX + 1)_\(currentY)"] == nil && guarded["\(currentX + 1)_\(currentY)"] == nil {
-                stack.wrappedValue.append((currentX + 1, currentY))
-                currentX += 1
-                visited.wrappedValue["\(currentX)_\(currentY)"] = true
-                canContinue = true
-            }else if isPossible(x: currentX, y: currentY + 1) && visited.wrappedValue["\(currentX)_\(currentY + 1)"] == nil && guarded["\(currentX)_\(currentY + 1)"] == nil {
-                stack.wrappedValue.append((currentX, currentY + 1))
-                currentY += 1
-                visited.wrappedValue["\(currentX)_\(currentY)"] = true
-                canContinue = true
-            }else if isPossible(x: currentX, y: currentY - 1) && visited.wrappedValue["\(currentX)_\(currentY - 1)"] == nil && guarded["\(currentX)_\(currentY - 1)"] == nil {
-                stack.wrappedValue.append((currentX, currentY - 1))
-                currentY -= 1
-                visited.wrappedValue["\(currentX)_\(currentY)"] = true
-                canContinue = true
-            }else if isPossible(x: currentX - 1, y: currentY) && visited.wrappedValue["\(currentX - 1)_\(currentY)"] == nil && guarded["\(currentX - 1)_\(currentY)"] == nil  {
-                stack.wrappedValue.append((currentX - 1, currentY))
-                currentX -= 1
-                visited.wrappedValue["\(currentX)_\(currentY)"] = true
-                canContinue = true
-            }else {
-                canContinue = false
-                stack.wrappedValue.popLast()
+    if recursive {
+        var result = false
+        func go(x: Int, y: Int) async {
+            if visited.wrappedValue["\(x)_\(y)"] == nil && guarded["\(x)_\(y)"] == nil {
+                try! await Task.sleep(nanoseconds: UInt64(SLEEP))
+                PosX.wrappedValue = x
+                PosY.wrappedValue = y
+                if x == MAX_X && y == MAX_Y { result = true; return }
+                visited.wrappedValue["\(x)_\(y)"] = true
+                if !result && isPossible(x: x - 1, y: y) { await go(x: x - 1, y: y) }
+                if !result && isPossible(x: x + 1, y: y)  { await go(x: x + 1, y: y) }
+                if !result && isPossible(x: x, y: y - 1)  { await go(x: x, y: y - 1) }
+                if !result && isPossible(x: x, y: y + 1)  { await go(x: x, y: y + 1) }
             }
+        }
+        await go(x: x, y: y)
+        return result
+    }else {
+        stack.wrappedValue.append((x, y))
+        var currentX = x
+        var currentY = y
+        var canContinue = false
+        while !stack.isEmpty {
+            (currentX, currentY) = stack.wrappedValue.last!
             PosX.wrappedValue = currentX
             PosY.wrappedValue = currentY
-            if currentX == MAX_X && currentY == MAX_Y { return true }
+            canContinue = true
+            while canContinue {
+                try! await Task.sleep(nanoseconds: UInt64(SLEEP))
+                print("next...\(Date()), currentX: \(currentX), currentY: \(currentY)")
+                if isPossible(x: currentX + 1, y: currentY) && visited.wrappedValue["\(currentX + 1)_\(currentY)"] == nil && guarded["\(currentX + 1)_\(currentY)"] == nil {
+                    stack.wrappedValue.append((currentX + 1, currentY))
+                    currentX += 1
+                    visited.wrappedValue["\(currentX)_\(currentY)"] = true
+                    canContinue = true
+                }else if isPossible(x: currentX, y: currentY + 1) && visited.wrappedValue["\(currentX)_\(currentY + 1)"] == nil && guarded["\(currentX)_\(currentY + 1)"] == nil {
+                    stack.wrappedValue.append((currentX, currentY + 1))
+                    currentY += 1
+                    visited.wrappedValue["\(currentX)_\(currentY)"] = true
+                    canContinue = true
+                }else if isPossible(x: currentX, y: currentY - 1) && visited.wrappedValue["\(currentX)_\(currentY - 1)"] == nil && guarded["\(currentX)_\(currentY - 1)"] == nil {
+                    stack.wrappedValue.append((currentX, currentY - 1))
+                    currentY -= 1
+                    visited.wrappedValue["\(currentX)_\(currentY)"] = true
+                    canContinue = true
+                }else if isPossible(x: currentX - 1, y: currentY) && visited.wrappedValue["\(currentX - 1)_\(currentY)"] == nil && guarded["\(currentX - 1)_\(currentY)"] == nil  {
+                    stack.wrappedValue.append((currentX - 1, currentY))
+                    currentX -= 1
+                    visited.wrappedValue["\(currentX)_\(currentY)"] = true
+                    canContinue = true
+                }else {
+                    canContinue = false
+                    stack.wrappedValue.popLast()
+                }
+                PosX.wrappedValue = currentX
+                PosY.wrappedValue = currentY
+                if currentX == MAX_X && currentY == MAX_Y { return true }
+            }
         }
+        return currentX == MAX_X && currentY == MAX_Y
     }
-    return currentX == MAX_X && currentY == MAX_Y
 }
 
 struct Item: Identifiable, Hashable {
@@ -221,7 +240,7 @@ struct EscapeGame: View {
                     Text(state)
                 }.padding()
             }.toolbar(content: {
-                Button("Go") {
+                Button("BackTrack") {
                     visited.removeAll()
                     stack.removeAll()
                     Task {
@@ -235,7 +254,26 @@ struct EscapeGame: View {
                         }
                         print(b)
                         state = "running..."
-                        let result = await solution(&b, PosX: $x, PosY: $y, visited: $visited, stack: $stack)
+                        let result = await solution(&b, PosX: $x, PosY: $y, visited: $visited, stack: $stack, recursive: false)
+                        print(result)
+                        state = result ? "succeed" : "fail"
+                    }
+                }
+                Button("Recursive") {
+                    visited.removeAll()
+                    stack.removeAll()
+                    Task {
+                        var b = [String]()
+                        board.forEach { e in
+                            var data = [Character]()
+                            e.forEach { v in
+                                data.append(Character(v.value))
+                            }
+                            b.append(String(data))
+                        }
+                        print(b)
+                        state = "running..."
+                        let result = await solution(&b, PosX: $x, PosY: $y, visited: $visited, stack: $stack, recursive: true)
                         print(result)
                         state = result ? "succeed" : "fail"
                     }
