@@ -14,18 +14,6 @@ struct Item: Identifiable, Hashable {
     var y: Int
 }
 
-extension String {
-    func toElement() -> Item {
-        return Item(value: self, x: 0, y: 0)
-    }
-}
-
-extension Character {
-    func toElement() -> Item {
-        return String(self).toElement()
-    }
-}
-
 class EscapeGameViewModel: ObservableObject {
     @Published var PosX: Int?
     @Published var PosY: Int?
@@ -99,11 +87,13 @@ class EscapeGameViewModel: ObservableObject {
                 }
                 b.append(String(data))
             }
-            print(b)
-            state = "running..."
+            DispatchQueue.main.async {
+                self.state = "running..."
+            }
             let result = await solution(b, recursive: recursive)
-            print(result)
-            state = result ? "succeed" : "fail"
+            DispatchQueue.main.async {
+                self.state = result ? "succeed" : "fail"
+            }
         }
     }
     
@@ -190,8 +180,10 @@ class EscapeGameViewModel: ObservableObject {
             func go(x: Int, y: Int) async {
                 if visited["\(x)_\(y)"] == nil && guarded["\(x)_\(y)"] == nil {
                     try! await Task.sleep(nanoseconds: UInt64(SLEEP))
-                    PosX = x
-                    PosY = y
+                    DispatchQueue.main.async {
+                        self.PosX = x
+                        self.PosY = y
+                    }
                     if x == MAX_X && y == MAX_Y { result = true; return }
                     visited["\(x)_\(y)"] = true
                     if !result && isPossible(x: x - 1, y: y) { await go(x: x - 1, y: y) }
@@ -209,12 +201,15 @@ class EscapeGameViewModel: ObservableObject {
             var canContinue = false
             while !stack.isEmpty {
                 (currentX, currentY) = stack.last!
-                PosX = currentX
-                PosY = currentY
+                let tmpX = currentX
+                let tmpY = currentY
+                DispatchQueue.main.async {
+                    self.PosX = tmpX
+                    self.PosY = tmpY
+                }
                 canContinue = true
                 while canContinue {
                     try! await Task.sleep(nanoseconds: UInt64(SLEEP))
-                    print("next...\(Date()), currentX: \(currentX), currentY: \(currentY)")
                     if isPossible(x: currentX + 1, y: currentY) && visited["\(currentX + 1)_\(currentY)"] == nil && guarded["\(currentX + 1)_\(currentY)"] == nil {
                         stack.append((currentX + 1, currentY))
                         currentX += 1
@@ -239,8 +234,12 @@ class EscapeGameViewModel: ObservableObject {
                         canContinue = false
                         let _ = stack.popLast()
                     }
-                    PosX = currentX
-                    PosY = currentY
+                    let tmpX = currentX
+                    let tmpY = currentY
+                    DispatchQueue.main.async {
+                        self.PosX = tmpX
+                        self.PosY = tmpY
+                    }
                     if currentX == MAX_X && currentY == MAX_Y { return true }
                 }
             }
