@@ -15,73 +15,97 @@ struct MyImage: Identifiable, Hashable {
 class ImagesViewModel: ObservableObject {
     @Published var images = [MyImage]()
     
-    func loadImages() async throws {
+    func loadImages() async {
         if images.count > 0 { return }
-        try await withThrowingTaskGroup(of: UIImage?.self, body: { group in
-            if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
-                if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
-                    for c in contents {
-                        group.addTask {
-                            do {
+//        await loadImagesWithTaskGroup()
+//        await loadImagesWithDetachedTask()
+        await loadImagesWithCompletionHandleInTask()
+    }
+    
+    func loadImagesWithTaskGroup() async {
+        do {
+            try await withThrowingTaskGroup(of: UIImage?.self, body: { group in
+                if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
+                    if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
+                        for c in contents {
+                            group.addTask {
                                 return try await self.loadImage(path: c.lastPathComponent, from: bundle)
-                            }catch {
-                                print("exception: \(error)")
-                                return nil
                             }
                         }
                     }
                 }
-            }
-            
-            await MainActor.run {
-                self.images = [MyImage]()
-            }
-            for try await image in group {
-                if let image {
-                    try Task.checkCancellation()
-                    await MainActor.run {
-                        self.images.append(MyImage(image: image))
+                
+                await MainActor.run {
+                    self.images = [MyImage]()
+                }
+                for try await image in group {
+                    if let image {
+                        try Task.checkCancellation()
+                        await MainActor.run {
+                            self.images.append(MyImage(image: image))
+                        }
                     }
                 }
-            }
-        })
-        /*
+            })
+        }catch {
+            print("exception: \(error)")
+        }
+    }
+    
+    func loadImagesWithDetachedTask() async {
         if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
             if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
-                print("contents: \(contents)")
-                var images = [UIImage]()
                 for c in contents {
-                    Task.detached {
-                        if let image = await self.loadImage(path: c.lastPathComponent, from: bundle) {
-                            await MainActor.run {
-                                self.images.append(image)
+                    Task {
+                        do {
+                            if let image = try await self.loadImage(path: c.lastPathComponent, from: bundle) {
+                                await MainActor.run {
+                                    self.images.append(MyImage(image: image))
+                                }
                             }
+                        }catch {
+                            //no exception when the parent task is cancelled!
+                            print("exception: \(error)")
                         }
                     }
-                    async let _ = loadImage(path: c.lastPathComponent, from: bundle, complete: { image in
-                        if let image {
-                            DispatchQueue.main.async {
-                                self.images.append(image)
-                            }
-                        }
-                    })
                 }
             }
         }
-         */
     }
     
-    func loadImage(path: String, from bundle: Bundle, complete: ((UIImage?) -> Void)? = nil) async throws -> UIImage? {
-        try Task.checkCancellation()
+    func loadImagesWithCompletionHandleInTask() async {
+        if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
+            if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
+                for c in contents {
+                    do {
+                        async let w = loadImage(path: c.lastPathComponent, from: bundle, complete: { image in
+                            if let image {
+                                DispatchQueue.main.async {
+                                    self.images.append(MyImage(image: image))
+                                }
+                            }
+                        })
+                        //above loadImage won't start to run until await!
+                        let _ = try await w
+                    }catch {
+                        print("exception: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func loadImage(path: String, from bundle: Bundle, complete: ((UIImage?) -> Void)? = nil) async throws -> UIImage? {
         print("loading image ...\(path)")
-        let n = (1...10).randomElement()!
-        try await Task.sleep(nanoseconds: UInt64(Double(n) * 1e9))
+        try Task.checkCancellation()
+        try await Task.sleep(nanoseconds: UInt64(Double((1...10).randomElement()!) * 1e9))
         try Task.checkCancellation()
         let image = UIImage(named: path, in: bundle, with: nil)
         try Task.checkCancellation()
         print("loading image ...\(path) complete.")
         try Task.checkCancellation()
         if let complete {
+            print("running complete...")
             complete(image)
             return image
         }
@@ -157,7 +181,7 @@ struct ImagesViewScroll: View {
                     }
                 }
             }.task {
-                try? await vm.loadImages()
+                await vm.loadImages()
             }.navigationTitle("Liu SiSi")
         }
     }
@@ -180,11 +204,7 @@ struct ImagesView: View {
                         }
                     }
                 }).task {
-                    do {
-                        try await vm.loadImages()
-                    }catch {
-                        print("exception: \(error)")
-                    }
+                    await vm.loadImages()
                 }
             }.navigationTitle("Liu sisi").navigationBarTitleDisplayMode(.inline)
         }
