@@ -109,6 +109,15 @@ struct MainImagesView: View {
     }
 }
 
+struct ImageDetailView: View {
+    @State var image: UIImage
+    var body: some View {
+        ScrollView {
+            Image(uiImage: image).resizable().scaledToFit()
+        }.navigationTitle("Image Detail")
+    }
+}
+
 struct ImagesViewScroll: View {
     @StateObject private var vm = ImagesViewModel()
     var body: some View {
@@ -118,7 +127,7 @@ struct ImagesViewScroll: View {
                     HStack {
                         ForEach(vm.images) { n in
                             NavigationLink {
-                                Image(uiImage: n.image).resizable().scaledToFit().navigationTitle("Image Detail")
+                                ImageDetailView(image: n.image)
                             } label: {
                                 Image(uiImage: n.image).resizable().scaledToFit().frame(width: 100, height: 100)
                             }
@@ -130,7 +139,7 @@ struct ImagesViewScroll: View {
                                     GridItem(.flexible(minimum: 50, maximum: 100))], content: {
                     ForEach(vm.images, id: \.self) { n in
                         NavigationLink {
-                            Image(uiImage: n.image).resizable().scaledToFit().navigationTitle("Image Detail")
+                            ImageDetailView(image: n.image)
                         } label: {
                             Image(uiImage: n.image).resizable().scaledToFit().frame(width: 100, height: 100)
                         }
@@ -140,7 +149,7 @@ struct ImagesViewScroll: View {
                     HStack {
                         ForEach(vm.images) { n in
                             NavigationLink {
-                                Image(uiImage: n.image).resizable().scaledToFit().navigationTitle("Image Detail")
+                                ImageDetailView(image: n.image)
                             } label: {
                                 Image(uiImage: n.image).resizable().scaledToFit().frame(width: 100, height: 100)
                             }
@@ -165,7 +174,7 @@ struct ImagesView: View {
                                     GridItem(.flexible(minimum: 50, maximum: 100))], content: {
                     ForEach(vm.images, id: \.self) { n in
                         NavigationLink {
-                            Image(uiImage: n.image).resizable().scaledToFit().navigationTitle("Image Detail")
+                            ImageDetailView(image: n.image)
                         } label: {
                             Image(uiImage: n.image).resizable().scaledToFit().frame(width: 100, height: 100)
                         }
