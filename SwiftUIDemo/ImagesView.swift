@@ -17,12 +17,13 @@ class ImagesViewModel: ObservableObject {
     
     func loadImages() async {
         if images.count > 0 { return }
-//        await loadImagesWithTaskGroup()
+        await loadImagesWithTaskGroup()
 //        await loadImagesWithDetachedTask()
-        await loadImagesWithCompletionHandleInTask()
+//        await loadImagesWithCompletionHandleInTask()
     }
     
     func loadImagesWithTaskGroup() async {
+        print("loadImagesWithTaskGroup...")
         do {
             try await withThrowingTaskGroup(of: UIImage?.self, body: { group in
                 if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
@@ -53,9 +54,11 @@ class ImagesViewModel: ObservableObject {
     }
     
     func loadImagesWithDetachedTask() async {
+        print("loadImagesWithDetachedTask...")
         if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
             if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
                 for c in contents {
+                    //a detached task won't cancel if parent task cancelled
                     Task {
                         do {
                             if let image = try await self.loadImage(path: c.lastPathComponent, from: bundle) {
@@ -74,6 +77,7 @@ class ImagesViewModel: ObservableObject {
     }
     
     func loadImagesWithCompletionHandleInTask() async {
+        print("loadImagesWithCompletionHandleInTask...")
         if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
             if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
                 for c in contents {
@@ -98,7 +102,9 @@ class ImagesViewModel: ObservableObject {
     private func loadImage(path: String, from bundle: Bundle, complete: ((UIImage?) -> Void)? = nil) async throws -> UIImage? {
         print("loading image ...\(path)")
         try Task.checkCancellation()
-        try await Task.sleep(nanoseconds: UInt64(Double((1...10).randomElement()!) * 1e9))
+        let n = (1...10).randomElement()!
+        print("loading image ...\(path) wait for \(n)")
+        try await Task.sleep(nanoseconds: UInt64(Double(n) * 1e9))
         try Task.checkCancellation()
         let image = UIImage(named: path, in: bundle, with: nil)
         try Task.checkCancellation()
