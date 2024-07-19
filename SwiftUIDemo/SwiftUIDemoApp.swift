@@ -13,8 +13,8 @@ struct SwiftUIDemoApp: App {
     var body: some Scene {
         WindowGroup {
 //            DateTimeInTimeZoneDemo()
-            MainImagesView()
-//            EscapeGame()
+//            MainImagesView()
+            EscapeGame()
 //            Todolist().environment(TodolistViewModel())
         }
     }

@@ -11,6 +11,7 @@ struct AnimationDemo: View {
     @State var degree: Angle = Angle(degrees: 0)
     @State var size: CGSize = CGSize(width: 100, height: 100)
     @State var rotation: Angle = Angle(degrees: 0)
+    @State var isOn: Bool = false
     var body: some View {
         Form {
             Section("Symbol effect") {
@@ -38,7 +39,7 @@ struct AnimationDemo: View {
                         .padding()
                         .background(.yellow)
                         .rotationEffect(degree)
-                        .animation(.easeIn, value: degree)
+                        .animation(.spring(.snappy, blendDuration: 2), value: degree)
                         .animation(.easeIn, value: size.width)
                         .animation(.easeIn, value: size.height)
                         .rotation3DEffect(rotation, axis: (x: 0.0, y: 1.0, z: 0.0))
@@ -46,7 +47,7 @@ struct AnimationDemo: View {
                     Divider()
                     HStack {
                         Button("Rotate") {
-                            degree.degrees += 10
+                            degree.degrees += 50
                         }
                         Button("Size") {
                             size.width += CGFloat((10...20).randomElement()!)
@@ -62,6 +63,13 @@ struct AnimationDemo: View {
                             size.height = 100
                         }
                     }.buttonStyle(.borderedProminent)
+                }
+            }
+            Section("Sprints Animation") {
+                VStack {
+                    Toggle(isOn: $isOn, label: {
+                        Text("Toggle")
+                    })
                 }
             }
         }

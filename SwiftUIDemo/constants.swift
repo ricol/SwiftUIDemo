@@ -29,4 +29,17 @@ struct Constants {
                 "https://www.china.com",
                 "https://www.qq.com"]
     static let PI: CGFloat = 3.1415216
+    static let liusisi: [UIImage] = {
+        var result = [UIImage]()
+        if let path = Bundle.main.path(forResource: "liusisi", ofType: "bundle"), let bundle = Bundle(path: path)  {
+            if let contents = try? FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil) {
+                for c in contents {
+                    if let image = UIImage(named: c.lastPathComponent, in: bundle, with: nil) {
+                        result.append(image)
+                    }
+                }
+            }
+        }
+        return result
+    }()
 }

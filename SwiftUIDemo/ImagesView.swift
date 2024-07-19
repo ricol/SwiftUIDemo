@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct MyImage: Identifiable, Hashable {
+fileprivate struct MyImage: Identifiable, Hashable {
     let image: UIImage
     let id = UUID()
 }
 
-class ImagesViewModel: ObservableObject {
+fileprivate class ImagesViewModel: ObservableObject {
     @Published var images = [MyImage]()
     
     func loadImages() async {

@@ -31,6 +31,7 @@
 		D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */; };
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
+		ED2690C32C49613200558569 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2690C22C49613200558569 /* CustomTabView.swift */; };
 		ED7A92812BC1B9F500ADAD81 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */; };
 		ED7A92852BC1BB8E00ADAD81 /* liusisi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */; };
 		ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A928A2BC27C4000ADAD81 /* Todolist.swift */; };
@@ -67,6 +68,7 @@
 		D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
+		ED2690C22C49613200558569 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = liusisi.bundle; sourceTree = "<group>"; };
 		ED7A928A2BC27C4000ADAD81 /* Todolist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todolist.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				EDB143892B85AC1A00494CFB /* ViewBuilderDemo.swift */,
 				ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */,
 				ED7A928A2BC27C4000ADAD81 /* Todolist.swift */,
+				ED2690C22C49613200558569 /* CustomTabView.swift */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */,
 				EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */,
 				D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */,
+				ED2690C32C49613200558569 /* CustomTabView.swift in Sources */,
 				EDB1438A2B85AC1A00494CFB /* ViewBuilderDemo.swift in Sources */,
 				D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */,
 				D9CD30412B0219BA00F38F91 /* FormDemo.swift in Sources */,
