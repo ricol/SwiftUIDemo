@@ -14,7 +14,7 @@ struct SwiftUIDemoApp: App {
         WindowGroup {
 //            DateTimeInTimeZoneDemo()
 //            MainImagesView()
-            EscapeGame()
+            MainView()
 //            Todolist().environment(TodolistViewModel())
         }
     }

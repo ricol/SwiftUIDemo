@@ -20,12 +20,13 @@ func getView1(flag: Bool) -> any View {
     flag ? Button("GO") {} : Text("TEXT")
 }
 
-@ViewBuilder
 func getView(flag: Bool) -> some View {
-    if flag {
-        Button("GO") {}
-    }else {
-        Text("Text")
+    Group {
+        if flag {
+            Button("GO") {}
+        }else {
+            Text("Text")
+        }
     }
 }
 
