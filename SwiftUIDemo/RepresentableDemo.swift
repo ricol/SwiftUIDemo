@@ -7,46 +7,8 @@
 
 import SwiftUI
 
-struct Employee {
-    var name: String
-    var jobTitle: String
-    var emailAddress: String
-    var profilePictures: String
-}
-
-struct ProfilePicture: View {
-    var imageName: String
-    
-    var body: some View {
-        Image(imageName).resizable().frame(width: 100, height: 100).clipShape(Circle())
-    }
-}
-
-struct EmailAddress: View {
-    var address: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "envelope")
-            Text(address)
-        }
-    }
-}
-
-struct EmployeeDetails: View {
-    var employee: Employee
-    
-    var body: some View {
-        VStack(alignment: .leading, content: {
-            Text(employee.name.capitalized).font(.largeTitle).foregroundStyle(.primary)
-            Text(employee.jobTitle).foregroundStyle(.secondary)
-            EmailAddress(address: employee.emailAddress)
-        })
-    }
-}
-
 struct EmployeeView: View {
-    var employee: Employee
+    var employee: Employee = Employee(name: "ricol wang", jobTitle: "Mobile App Developer", emailAddress: "ricol.wang@globalpay.com", profilePictures: "profile")
     
     var body: some View {
         HStack {
@@ -54,17 +16,43 @@ struct EmployeeView: View {
             EmployeeDetails(employee: employee)
         }
     }
-}
-
-struct TextView: UIViewRepresentable {
-    @Binding var text: NSMutableAttributedString
-
-    func makeUIView(context: Context) -> UITextView {
-        UITextView()
+    
+    struct Employee {
+        var name: String
+        var jobTitle: String
+        var emailAddress: String
+        var profilePictures: String
     }
 
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.attributedText = text
+    struct ProfilePicture: View {
+        var imageName: String
+        
+        var body: some View {
+            Image(imageName).resizable().frame(width: 100, height: 100).clipShape(Circle())
+        }
+    }
+
+    struct EmailAddress: View {
+        var address: String
+        
+        var body: some View {
+            HStack {
+                Image(systemName: "envelope")
+                Text(address)
+            }
+        }
+    }
+
+    struct EmployeeDetails: View {
+        var employee: Employee
+        
+        var body: some View {
+            VStack(alignment: .leading, content: {
+                Text(employee.name.capitalized).font(.largeTitle).foregroundStyle(.primary)
+                Text(employee.jobTitle).foregroundStyle(.secondary)
+                EmailAddress(address: employee.emailAddress)
+            })
+        }
     }
 }
 
@@ -114,9 +102,30 @@ struct SearchFieldDemoView: View {
     }
 }
 #Preview {
-    EmployeeView(employee: Employee(name: "ricol wang", jobTitle: "Mobile App Developer", emailAddress: "ricol.wang@globalpay.com", profilePictures: "profile"))
+    EmployeeView()
 }
 
 #Preview {
     SearchFieldDemoView()
+}
+
+struct ActivityIndicatorView: UIViewRepresentable {
+    var isShowing: Bool
+    var color: UIColor
+
+    func makeUIView(context: Context) -> UIActivityIndicatorView {
+        let a = UIActivityIndicatorView()
+        a.color = color
+        return a
+    }
+    
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
+        isShowing ? uiView.startAnimating() : uiView.stopAnimating()
+    }
+    
+    typealias UIViewType = UIActivityIndicatorView
+}
+
+#Preview {
+    ActivityIndicatorView(isShowing: true, color: .red)
 }

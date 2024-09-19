@@ -11,7 +11,7 @@ class Mine: NSObject, Identifiable, ObservableObject {
     var id = UUID()
     var x: Int = 0
     var y: Int = 0
-    var isMine: Bool = (0...100).randomElement()! < 5
+    var isMine: Bool = (0...100).randomElement()! < 10
     @Published var flagged: Bool = false
     @Published var sweeped: Bool = false
     @Published var revealed: Bool = false
@@ -72,7 +72,12 @@ class Mine: NSObject, Identifiable, ObservableObject {
 }
 
 class MineGameModel: ObservableObject {
-    @Published var mines: [[Mine]] = [[Mine]]()
+    private var allowUpdate = true
+    var mines: [[Mine]] = [[Mine]]() {
+        willSet {
+            if allowUpdate { objectWillChange.send() }
+        }
+    }
     @Published var youloose: Bool = false {
         didSet {
             if youloose {
@@ -168,28 +173,6 @@ class MineGameModel: ObservableObject {
          CGPoint(x: i + 1, y: j - 1),   CGPoint(x: i + 1, y: j),    CGPoint(x: i + 1, y: j + 1)]
     }
     
-    func autoCheck(i: Int, j: Int, value: Int?) {
-        guard let value = value else { return }
-        if value == 0 { return }
-        let surrounding = getSurrounding(i: i, j: j)
-        var remainingUnSweeped = 0
-        var data = [Mine]()
-        surrounding.forEach { p in
-            if let m = getValue(i: Int(p.x), j: Int(p.y)) {
-                if !m.sweeped { data.append(m); remainingUnSweeped += 1}
-            }
-        }
-        if remainingUnSweeped == value {
-            DispatchQueue.main.sync {
-                data.forEach { m in
-                    mines[m.x][m.y] = m.getFlaggedCopy(value: true)
-                }
-                totalMineLeft = totalMine - totalFlagged
-                if checkWin() { youwin = true; gameOver = true }
-            }
-        }
-    }
-    
     var checked = Set<Mine>()
 //    let delay: CGFloat = 0
     func revealSurroundingArea(i: Int, j: Int, begin: Bool = true) {
@@ -241,9 +224,11 @@ class MineGameModel: ObservableObject {
             //check surrounding aear
             if count == 0 {
                 inProcessing = true
+                allowUpdate = false
                 DispatchQueue.global().async {
                     self.revealSurroundingArea(i: m.x, j: m.y)
                     self.autoFlagMine()
+                    self.allowUpdate = true
                     DispatchQueue.main.async {
                         self.inProcessing = false
                     }
@@ -257,7 +242,29 @@ class MineGameModel: ObservableObject {
     func autoFlagMine() {
         self.mines.forEach { mm in
             mm.forEach { m in
-                self.autoCheck(i: m.x, j: m.y, value: m.count)
+                autoCheck(i: m.x, j: m.y, value: m.count)
+            }
+        }
+        
+        func autoCheck(i: Int, j: Int, value: Int?) {
+            guard let value = value else { return }
+            if value == 0 { return }
+            let surrounding = getSurrounding(i: i, j: j)
+            var remainingUnSweeped = 0
+            var data = [Mine]()
+            surrounding.forEach { p in
+                if let m = getValue(i: Int(p.x), j: Int(p.y)) {
+                    if !m.sweeped { data.append(m); remainingUnSweeped += 1}
+                }
+            }
+            if remainingUnSweeped == value {
+                DispatchQueue.main.sync {
+                    data.forEach { m in
+                        mines[m.x][m.y] = m.getFlaggedCopy(value: true)
+                    }
+                    totalMineLeft = totalMine - totalFlagged
+                    if checkWin() { youwin = true; gameOver = true }
+                }
             }
         }
     }
@@ -277,7 +284,7 @@ enum Operation {
 struct MineSweepGame: View {
     @State var totalMine: Int = 0
     @State var op: Operation = .none
-    @StateObject var vm: MineGameModel = MineGameModel(x: 12, y: 8)
+    @StateObject var vm: MineGameModel = MineGameModel(x: 15, y: 8)
     
     var body: some View {
         ZStack {
@@ -286,8 +293,9 @@ struct MineSweepGame: View {
                 Spacer()
                 ControlView(vm: vm, op: $op)
                 Divider()
-                Spacer()
-                BodyView(vm: vm, op: $op)
+                ScrollView(.vertical) {
+                    BodyView(vm: vm, op: $op)
+                }.frame(height: 650)
                 Spacer()
                 HStack {
                     Text("Total mine: \(vm.totalMineLeft)").foregroundStyle(.blue).font(.title2)

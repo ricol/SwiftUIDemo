@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-actor Account: ObservableObject {
-    @Published var balance: Int = 0
-    
-    func deposit(cash: Int) {
-        balance += cash
-    }
-    
-    func withdraw(cash: Int) {
-        balance -= cash
-    }
-    
-    func getBalance() -> Int {
-        balance
-    }
-}
-
 struct AsyncActorDemo: View {
     var account: Account = Account()
     @State var b: Int = 0
@@ -52,6 +36,22 @@ struct AsyncActorDemo: View {
                     }
                 }
             }.buttonStyle(.borderedProminent)
+        }
+    }
+    
+    actor Account: ObservableObject {
+        @Published var balance: Int = 0
+        
+        func deposit(cash: Int) {
+            balance += cash
+        }
+        
+        func withdraw(cash: Int) {
+            balance -= cash
+        }
+        
+        func getBalance() -> Int {
+            balance
         }
     }
 }

@@ -12,7 +12,10 @@ struct SwiftUIDemoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            DateTimeInTimeZoneDemo()
+//            MainImagesView()
+            MainView()
+//            Todolist().environment(TodolistViewModel())
         }
     }
 }
