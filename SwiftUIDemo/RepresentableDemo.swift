@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmployeeView: View {
-    var employee: Employee = Employee(name: "ricol wang", jobTitle: "Mobile App Developer", emailAddress: "ricol.wang@globalpay.com", profilePictures: "profile")
+    var employee: Employee = Employee(name: "ricol wang", jobTitle: "Mobile App Developer", emailAddress: "ricolwang2020@gmail.com", profilePictures: "profile")
     
     var body: some View {
         HStack {

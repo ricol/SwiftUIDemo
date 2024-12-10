@@ -283,7 +283,7 @@ enum Operation {
 
 struct MineSweepGame: View {
     @State var totalMine: Int = 0
-    @State var op: Operation = .none
+    @State var op: Operation = .sweep
     @StateObject var vm: MineGameModel = MineGameModel(x: 15, y: 8)
     
     var body: some View {
