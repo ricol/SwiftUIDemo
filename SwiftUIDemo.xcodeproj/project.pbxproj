@@ -31,6 +31,7 @@
 		D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */; };
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
+		ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */; };
 		ED2690C32C49613200558569 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2690C22C49613200558569 /* CustomTabView.swift */; };
 		ED7A92812BC1B9F500ADAD81 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */; };
 		ED7A92852BC1BB8E00ADAD81 /* liusisi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */; };
@@ -69,6 +70,7 @@
 		D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
+		ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentControl.swift; sourceTree = "<group>"; };
 		ED2690C22C49613200558569 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = liusisi.bundle; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */,
 				ED7A928A2BC27C4000ADAD81 /* Todolist.swift */,
 				ED2690C22C49613200558569 /* CustomTabView.swift */,
+				ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
 				D922D85F2B0B43F500B3A5FB /* NumberGame.swift in Sources */,
+				ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */,
 				EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */,
 				D922D87D2B0EE89200B3A5FB /* AnimationDemo.swift in Sources */,
 				D9F357022B01CE4300001ABD /* MetroView.swift in Sources */,
