@@ -40,6 +40,7 @@
 		EDB1438A2B85AC1A00494CFB /* ViewBuilderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB143892B85AC1A00494CFB /* ViewBuilderDemo.swift */; };
 		EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */; };
 		EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */; };
+		EDF7B6442D59E4310074FE77 /* ModelObserveDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		EDB143892B85AC1A00494CFB /* ViewBuilderDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilderDemo.swift; sourceTree = "<group>"; };
 		EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDemo.swift; sourceTree = "<group>"; };
 		EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemo.swift; sourceTree = "<group>"; };
+		EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserveDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				ED7A928A2BC27C4000ADAD81 /* Todolist.swift */,
 				ED2690C22C49613200558569 /* CustomTabView.swift */,
 				ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */,
+				EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				D97A4EC62AEF5565002C6E15 /* SwiftUIDemoApp.swift in Sources */,
 				D9CF4C0F2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift in Sources */,
 				D9CD30432B03202600F38F91 /* WebViewDemo.swift in Sources */,
+				EDF7B6442D59E4310074FE77 /* ModelObserveDemo.swift in Sources */,
 				D922D87B2B0DECFB00B3A5FB /* ClockDemo.swift in Sources */,
 				D95DB6652B06088900FD0D4C /* MemorizeGame.swift in Sources */,
 				D9CD30472B04648500F38F91 /* AsyncCallDemo.swift in Sources */,
