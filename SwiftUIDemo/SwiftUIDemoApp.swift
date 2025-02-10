@@ -14,9 +14,7 @@ struct SwiftUIDemoApp: App {
         WindowGroup {
 //            DateTimeInTimeZoneDemo()
 //            MainImagesView()
-//            MainView()
-            ScrollableSegmentsControl(vm: ViewModel())
-//            Todolist().environment(TodolistViewModel())
+            MainView()
         }
     }
 }
