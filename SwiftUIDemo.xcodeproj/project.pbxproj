@@ -33,11 +33,13 @@
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
 		ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */; };
 		ED2690C32C49613200558569 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2690C22C49613200558569 /* CustomTabView.swift */; };
+		ED32333C2E03F27A0039772E /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32333B2E03F2720039772E /* NavigationDemo.swift */; };
 		ED7A92812BC1B9F500ADAD81 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */; };
 		ED7A92852BC1BB8E00ADAD81 /* liusisi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */; };
 		ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A928A2BC27C4000ADAD81 /* Todolist.swift */; };
 		ED86A3352B691037000AD6A3 /* EscapeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86A3342B691037000AD6A3 /* EscapeGame.swift */; };
 		EDB1438A2B85AC1A00494CFB /* ViewBuilderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB143892B85AC1A00494CFB /* ViewBuilderDemo.swift */; };
+		EDBFC71D2E04144500C061E4 /* BindingDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBFC71C2E04144200C061E4 /* BindingDemo.swift */; };
 		EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */; };
 		EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */; };
 		EDF7B6442D59E4310074FE77 /* ModelObserveDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */; };
@@ -73,11 +75,13 @@
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
 		ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentControl.swift; sourceTree = "<group>"; };
 		ED2690C22C49613200558569 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		ED32333B2E03F2720039772E /* NavigationDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDemo.swift; sourceTree = "<group>"; };
 		ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = liusisi.bundle; sourceTree = "<group>"; };
 		ED7A928A2BC27C4000ADAD81 /* Todolist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todolist.swift; sourceTree = "<group>"; };
 		ED86A3342B691037000AD6A3 /* EscapeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeGame.swift; sourceTree = "<group>"; };
 		EDB143892B85AC1A00494CFB /* ViewBuilderDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilderDemo.swift; sourceTree = "<group>"; };
+		EDBFC71C2E04144200C061E4 /* BindingDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingDemo.swift; sourceTree = "<group>"; };
 		EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDemo.swift; sourceTree = "<group>"; };
 		EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemo.swift; sourceTree = "<group>"; };
 		EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserveDemo.swift; sourceTree = "<group>"; };
@@ -122,9 +126,9 @@
 		D97A4EC42AEF5565002C6E15 /* SwiftUIDemo */ = {
 			isa = PBXGroup;
 			children = (
-				ED7A928C2BC2800800ADAD81 /* Resources */,
-				D97A4ECB2AEF5567002C6E15 /* Preview Content */,
 				D97A4EC52AEF5565002C6E15 /* SwiftUIDemoApp.swift */,
+				EDBFC71C2E04144200C061E4 /* BindingDemo.swift */,
+				ED32333B2E03F2720039772E /* NavigationDemo.swift */,
 				D95DB6622B05B43300FD0D4C /* constants.swift */,
 				D97A4EC72AEF5565002C6E15 /* PropertyWrapperDemo.swift */,
 				D97A4ED32AF1F8B7002C6E15 /* RepresentableDemo.swift */,
@@ -151,6 +155,8 @@
 				ED2690C22C49613200558569 /* CustomTabView.swift */,
 				ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */,
 				EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */,
+				ED7A928C2BC2800800ADAD81 /* Resources */,
+				D97A4ECB2AEF5567002C6E15 /* Preview Content */,
 			);
 			path = SwiftUIDemo;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 				EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */,
 				D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */,
 				ED2690C32C49613200558569 /* CustomTabView.swift in Sources */,
+				ED32333C2E03F27A0039772E /* NavigationDemo.swift in Sources */,
 				EDB1438A2B85AC1A00494CFB /* ViewBuilderDemo.swift in Sources */,
 				D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */,
 				D9CD30412B0219BA00F38F91 /* FormDemo.swift in Sources */,
@@ -312,6 +319,7 @@
 				D922D87D2B0EE89200B3A5FB /* AnimationDemo.swift in Sources */,
 				D9F357022B01CE4300001ABD /* MetroView.swift in Sources */,
 				D9CD30772B04B71D00F38F91 /* SortInActionDemo.swift in Sources */,
+				EDBFC71D2E04144500C061E4 /* BindingDemo.swift in Sources */,
 				D97A4EC62AEF5565002C6E15 /* SwiftUIDemoApp.swift in Sources */,
 				D9CF4C0F2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift in Sources */,
 				D9CD30432B03202600F38F91 /* WebViewDemo.swift in Sources */,
