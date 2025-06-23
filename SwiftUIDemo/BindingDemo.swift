@@ -7,6 +7,55 @@
 
 import SwiftUI
 
+@Observable
+class Book: Identifiable {
+    var title = "Sample Book Title"
+    var isAvailable = true
+}
+
+struct BookEditView: View {
+    @Bindable var book: Book
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack {
+            Text(book.title)
+            Text("\(book.isAvailable ? "Available": "Not Available")")
+            Form {
+                TextField("Title", text: $book.title)
+                Toggle("Book is available", isOn: $book.isAvailable)
+                Button("Close") {
+                    dismiss()
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    let b = Book()
+    BookEditView(book: b)
+}
+
+struct LibraryView: View {
+    @State private var books = [Book(), Book(), Book()]
+    var body: some View {
+        VStack {
+            ForEach(books) { book in
+                Text(book.title)
+            }
+            List(books) { book in
+                @Bindable var book = book
+                TextField("Title", text: $book.title)
+            }
+        }
+    }
+}
+
+#Preview {
+    LibraryView()
+}
+
 struct BindingDemo: View {
     @State private var score: Int = 0
     @State private var newScore: Int = 0
