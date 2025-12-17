@@ -85,3 +85,8 @@ struct ModelObserveWrongWayDemo {
 #Preview {
     ModelObserveWrongWayDemo.DemoView(vm: ModelObserveWrongWayDemo.ViewModel())
 }
+
+func test() {
+    var s: String = ""
+    let binding = Binding<String>(get: {s}, set: {s = $0})
+}

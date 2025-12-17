@@ -32,6 +32,7 @@
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
 		ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */; };
+		ED128DB92EB2159100DAF46F /* LayoutDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */; };
 		ED2690C32C49613200558569 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2690C22C49613200558569 /* CustomTabView.swift */; };
 		ED32333C2E03F27A0039772E /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32333B2E03F2720039772E /* NavigationDemo.swift */; };
 		ED7A92812BC1B9F500ADAD81 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */; };
@@ -42,6 +43,7 @@
 		EDBFC71D2E04144500C061E4 /* BindingDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBFC71C2E04144200C061E4 /* BindingDemo.swift */; };
 		EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */; };
 		EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */; };
+		EDE718892ECC4F32004A209C /* EnvironmentViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */; };
 		EDF7B6442D59E4310074FE77 /* ModelObserveDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,7 @@
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
 		ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentControl.swift; sourceTree = "<group>"; };
+		ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDemo.swift; sourceTree = "<group>"; };
 		ED2690C22C49613200558569 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		ED32333B2E03F2720039772E /* NavigationDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDemo.swift; sourceTree = "<group>"; };
 		ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		EDBFC71C2E04144200C061E4 /* BindingDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingDemo.swift; sourceTree = "<group>"; };
 		EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDemo.swift; sourceTree = "<group>"; };
 		EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemo.swift; sourceTree = "<group>"; };
+		EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewDemo.swift; sourceTree = "<group>"; };
 		EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserveDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				D97A4EC52AEF5565002C6E15 /* SwiftUIDemoApp.swift */,
+				EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */,
+				ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */,
 				EDBFC71C2E04144200C061E4 /* BindingDemo.swift */,
 				ED32333B2E03F2720039772E /* NavigationDemo.swift */,
 				D95DB6622B05B43300FD0D4C /* constants.swift */,
@@ -262,6 +268,8 @@
 				Base,
 			);
 			mainGroup = D97A4EB92AEF5565002C6E15;
+			packageReferences = (
+			);
 			productRefGroup = D97A4EC32AEF5565002C6E15 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -299,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE718892ECC4F32004A209C /* EnvironmentViewDemo.swift in Sources */,
 				D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */,
 				EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */,
 				D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */,
@@ -313,6 +322,7 @@
 				D95DB6632B05B43300FD0D4C /* constants.swift in Sources */,
 				ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
+				ED128DB92EB2159100DAF46F /* LayoutDemo.swift in Sources */,
 				D922D85F2B0B43F500B3A5FB /* NumberGame.swift in Sources */,
 				ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */,
 				EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */,

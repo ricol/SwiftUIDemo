@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct SwiftUIDemoApp: App {
-    
     var body: some Scene {
         WindowGroup {
 //            DateTimeInTimeZoneDemo()
 //            MainImagesView()
-            MainView()
+//            MainView()
+//            SetIdealSize()
+            CustomBindingView()
         }
     }
 }

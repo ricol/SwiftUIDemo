@@ -76,3 +76,27 @@ struct BindingDemo: View {
 #Preview {
     BindingDemo()
 }
+
+struct CustomBindingView: View {
+    @StateObject var a = A()
+    
+    var body: some View {
+        let binding = Binding<String>(
+            get: { a.name },
+            set: { a.name = $0 }
+        )
+        
+        VStack(alignment: .leading) {
+            Text("Your input: " + binding.wrappedValue)
+            TextField("input:", text: binding)
+        }.padding()
+    }
+
+    class A: ObservableObject {
+        @Published var name: String = ""
+    }
+}
+
+#Preview {
+    CustomBindingView()
+}
