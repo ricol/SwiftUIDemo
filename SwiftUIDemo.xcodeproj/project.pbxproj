@@ -31,6 +31,8 @@
 		D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */; };
 		D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */; };
 		D9F357022B01CE4300001ABD /* MetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F357012B01CE4300001ABD /* MetroView.swift */; };
+		ED083A532F1F7520005E7584 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED083A522F1F751D005E7584 /* SliderView.swift */; };
+		ED083A552F1F7637005E7584 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED083A542F1F7635005E7584 /* extensions.swift */; };
 		ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */; };
 		ED128DB92EB2159100DAF46F /* LayoutDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */; };
 		ED2690C32C49613200558569 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2690C22C49613200558569 /* CustomTabView.swift */; };
@@ -75,6 +77,8 @@
 		D9EE0EE22B16DEC2000C3867 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDemo.swift; sourceTree = "<group>"; };
 		D9F357012B01CE4300001ABD /* MetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroView.swift; sourceTree = "<group>"; };
+		ED083A522F1F751D005E7584 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		ED083A542F1F7635005E7584 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentControl.swift; sourceTree = "<group>"; };
 		ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDemo.swift; sourceTree = "<group>"; };
 		ED2690C22C49613200558569 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
@@ -130,12 +134,12 @@
 		D97A4EC42AEF5565002C6E15 /* SwiftUIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				ED083A562F1F7A9D005E7584 /* utils */,
 				D97A4EC52AEF5565002C6E15 /* SwiftUIDemoApp.swift */,
 				EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */,
 				ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */,
 				EDBFC71C2E04144200C061E4 /* BindingDemo.swift */,
 				ED32333B2E03F2720039772E /* NavigationDemo.swift */,
-				D95DB6622B05B43300FD0D4C /* constants.swift */,
 				D97A4EC72AEF5565002C6E15 /* PropertyWrapperDemo.swift */,
 				D97A4ED32AF1F8B7002C6E15 /* RepresentableDemo.swift */,
 				D9CD30422B03202600F38F91 /* WebViewDemo.swift */,
@@ -161,6 +165,7 @@
 				ED2690C22C49613200558569 /* CustomTabView.swift */,
 				ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */,
 				EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */,
+				ED083A522F1F751D005E7584 /* SliderView.swift */,
 				ED7A928C2BC2800800ADAD81 /* Resources */,
 				D97A4ECB2AEF5567002C6E15 /* Preview Content */,
 			);
@@ -193,6 +198,15 @@
 				D9CD306A2B048EEB00F38F91 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ED083A562F1F7A9D005E7584 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				ED083A542F1F7635005E7584 /* extensions.swift */,
+				D95DB6622B05B43300FD0D4C /* constants.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		ED7A928C2BC2800800ADAD81 /* Resources */ = {
@@ -316,10 +330,12 @@
 				EDB1438A2B85AC1A00494CFB /* ViewBuilderDemo.swift in Sources */,
 				D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */,
 				D9CD30412B0219BA00F38F91 /* FormDemo.swift in Sources */,
+				ED083A532F1F7520005E7584 /* SliderView.swift in Sources */,
 				D97A4ED42AF1F8B7002C6E15 /* RepresentableDemo.swift in Sources */,
 				ED86A3352B691037000AD6A3 /* EscapeGame.swift in Sources */,
 				D9F357002AFE2E1A00001ABD /* CityWeatherDemo.swift in Sources */,
 				D95DB6632B05B43300FD0D4C /* constants.swift in Sources */,
+				ED083A552F1F7637005E7584 /* extensions.swift in Sources */,
 				ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
 				ED128DB92EB2159100DAF46F /* LayoutDemo.swift in Sources */,

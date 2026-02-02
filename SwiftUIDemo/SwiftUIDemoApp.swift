@@ -13,9 +13,9 @@ struct SwiftUIDemoApp: App {
         WindowGroup {
 //            DateTimeInTimeZoneDemo()
 //            MainImagesView()
-//            MainView()
 //            SetIdealSize()
-            CustomBindingView()
+//            CustomBindingView()
+            Text("welcome")
         }
     }
 }
