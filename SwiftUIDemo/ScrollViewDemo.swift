@@ -27,7 +27,6 @@ struct ScrollViewDemo: View {
                         }
                         Text("here").id(max)
                     }.redacted(reason: isLoading ? .placeholder : .privacy)
-                    .navigationTitle("ScrollViewDemo")
                     Divider()
                     HStack {
                         Button("Reload") {

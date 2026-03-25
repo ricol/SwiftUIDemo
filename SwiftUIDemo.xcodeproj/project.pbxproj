@@ -35,8 +35,13 @@
 		ED083A552F1F7637005E7584 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED083A542F1F7635005E7584 /* extensions.swift */; };
 		ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */; };
 		ED128DB92EB2159100DAF46F /* LayoutDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */; };
+		ED1E2E212F585C82009F5861 /* SolarSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1E2E202F585C7D009F5861 /* SolarSystem.swift */; };
 		ED2690C32C49613200558569 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2690C22C49613200558569 /* CustomTabView.swift */; };
 		ED32333C2E03F27A0039772E /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32333B2E03F2720039772E /* NavigationDemo.swift */; };
+		ED346E392F626521006DC5B8 /* LoadingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED346E382F62651B006DC5B8 /* LoadingSpinnerView.swift */; };
+		ED5CEBDB2F67F2FA008015C3 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CEBDA2F67F2F7008015C3 /* CustomLayout.swift */; };
+		ED69757D2F711FFE006D1ED9 /* ViewUpdateDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED69757C2F711FF8006D1ED9 /* ViewUpdateDemo.swift */; };
+		ED69757F2F7126FF006D1ED9 /* GridViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED69757E2F7126FD006D1ED9 /* GridViewDemo.swift */; };
 		ED7A92812BC1B9F500ADAD81 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */; };
 		ED7A92852BC1BB8E00ADAD81 /* liusisi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */; };
 		ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7A928A2BC27C4000ADAD81 /* Todolist.swift */; };
@@ -45,6 +50,7 @@
 		EDBFC71D2E04144500C061E4 /* BindingDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBFC71C2E04144200C061E4 /* BindingDemo.swift */; };
 		EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */; };
 		EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */; };
+		EDE31F702F73D91D00A73F57 /* KeyboardHandlingDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE31F6F2F73D91800A73F57 /* KeyboardHandlingDemo.swift */; };
 		EDE718892ECC4F32004A209C /* EnvironmentViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */; };
 		EDF7B6442D59E4310074FE77 /* ModelObserveDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */; };
 /* End PBXBuildFile section */
@@ -81,8 +87,13 @@
 		ED083A542F1F7635005E7584 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentControl.swift; sourceTree = "<group>"; };
 		ED128DB82EB2158E00DAF46F /* LayoutDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDemo.swift; sourceTree = "<group>"; };
+		ED1E2E202F585C7D009F5861 /* SolarSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystem.swift; sourceTree = "<group>"; };
 		ED2690C22C49613200558569 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		ED32333B2E03F2720039772E /* NavigationDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDemo.swift; sourceTree = "<group>"; };
+		ED346E382F62651B006DC5B8 /* LoadingSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinnerView.swift; sourceTree = "<group>"; };
+		ED5CEBDA2F67F2F7008015C3 /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
+		ED69757C2F711FF8006D1ED9 /* ViewUpdateDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUpdateDemo.swift; sourceTree = "<group>"; };
+		ED69757E2F7126FD006D1ED9 /* GridViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewDemo.swift; sourceTree = "<group>"; };
 		ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		ED7A92842BC1BB8E00ADAD81 /* liusisi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = liusisi.bundle; sourceTree = "<group>"; };
 		ED7A928A2BC27C4000ADAD81 /* Todolist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todolist.swift; sourceTree = "<group>"; };
@@ -91,6 +102,7 @@
 		EDBFC71C2E04144200C061E4 /* BindingDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingDemo.swift; sourceTree = "<group>"; };
 		EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDemo.swift; sourceTree = "<group>"; };
 		EDCE1B1B2C9BEAEE00F0048E /* TabbarDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemo.swift; sourceTree = "<group>"; };
+		EDE31F6F2F73D91800A73F57 /* KeyboardHandlingDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandlingDemo.swift; sourceTree = "<group>"; };
 		EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewDemo.swift; sourceTree = "<group>"; };
 		EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserveDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +146,13 @@
 		D97A4EC42AEF5565002C6E15 /* SwiftUIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				EDE31F6F2F73D91800A73F57 /* KeyboardHandlingDemo.swift */,
+				ED69757E2F7126FD006D1ED9 /* GridViewDemo.swift */,
+				ED69757C2F711FF8006D1ED9 /* ViewUpdateDemo.swift */,
+				ED5CEBDA2F67F2F7008015C3 /* CustomLayout.swift */,
+				ED346E3C2F626E66006DC5B8 /* Components */,
+				ED346E3B2F626E5B006DC5B8 /* Games */,
+				ED346E3A2F626E40006DC5B8 /* Simulations */,
 				ED083A562F1F7A9D005E7584 /* utils */,
 				D97A4EC52AEF5565002C6E15 /* SwiftUIDemoApp.swift */,
 				EDE718882ECC4F2B004A209C /* EnvironmentViewDemo.swift */,
@@ -150,22 +169,16 @@
 				D9F356FF2AFE2E1A00001ABD /* CityWeatherDemo.swift */,
 				D9F357012B01CE4300001ABD /* MetroView.swift */,
 				D9CF4C0E2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift */,
-				D95DB6642B06088900FD0D4C /* MemorizeGame.swift */,
-				D922D85E2B0B43F500B3A5FB /* NumberGame.swift */,
-				D9CF4C0A2B1051E000BAF347 /* MineSweepGame.swift */,
 				D9CD30762B04B71C00F38F91 /* SortInActionDemo.swift */,
 				D922D87A2B0DECFB00B3A5FB /* ClockDemo.swift */,
 				D9CF4C082B0F2C3E00BAF347 /* AsyncActorDemo.swift */,
 				D9CD30462B04648500F38F91 /* AsyncCallDemo.swift */,
 				EDC466B62B5FAABC00E4BAF7 /* ScrollViewDemo.swift */,
-				ED86A3342B691037000AD6A3 /* EscapeGame.swift */,
 				EDB143892B85AC1A00494CFB /* ViewBuilderDemo.swift */,
 				ED7A92802BC1B9F500ADAD81 /* ImagesView.swift */,
 				ED7A928A2BC27C4000ADAD81 /* Todolist.swift */,
 				ED2690C22C49613200558569 /* CustomTabView.swift */,
-				ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */,
 				EDF7B6432D59E42E0074FE77 /* ModelObserveDemo.swift */,
-				ED083A522F1F751D005E7584 /* SliderView.swift */,
 				ED7A928C2BC2800800ADAD81 /* Resources */,
 				D97A4ECB2AEF5567002C6E15 /* Preview Content */,
 			);
@@ -207,6 +220,35 @@
 				D95DB6622B05B43300FD0D4C /* constants.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		ED346E3A2F626E40006DC5B8 /* Simulations */ = {
+			isa = PBXGroup;
+			children = (
+				ED1E2E202F585C7D009F5861 /* SolarSystem.swift */,
+			);
+			path = Simulations;
+			sourceTree = "<group>";
+		};
+		ED346E3B2F626E5B006DC5B8 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				D95DB6642B06088900FD0D4C /* MemorizeGame.swift */,
+				D922D85E2B0B43F500B3A5FB /* NumberGame.swift */,
+				D9CF4C0A2B1051E000BAF347 /* MineSweepGame.swift */,
+				ED86A3342B691037000AD6A3 /* EscapeGame.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		ED346E3C2F626E66006DC5B8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ED346E382F62651B006DC5B8 /* LoadingSpinnerView.swift */,
+				ED083A522F1F751D005E7584 /* SliderView.swift */,
+				ED0843FA2D478F91006979B2 /* ScrollableSegmentControl.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		ED7A928C2BC2800800ADAD81 /* Resources */ = {
@@ -324,9 +366,11 @@
 				EDE718892ECC4F32004A209C /* EnvironmentViewDemo.swift in Sources */,
 				D9EE0EE32B16DEC2000C3867 /* KeychainStore.swift in Sources */,
 				EDC466B72B5FAABC00E4BAF7 /* ScrollViewDemo.swift in Sources */,
+				ED69757F2F7126FF006D1ED9 /* GridViewDemo.swift in Sources */,
 				D9CF4C0B2B1051E000BAF347 /* MineSweepGame.swift in Sources */,
 				ED2690C32C49613200558569 /* CustomTabView.swift in Sources */,
 				ED32333C2E03F27A0039772E /* NavigationDemo.swift in Sources */,
+				ED69757D2F711FFE006D1ED9 /* ViewUpdateDemo.swift in Sources */,
 				EDB1438A2B85AC1A00494CFB /* ViewBuilderDemo.swift in Sources */,
 				D9CF4C092B0F2C3E00BAF347 /* AsyncActorDemo.swift in Sources */,
 				D9CD30412B0219BA00F38F91 /* FormDemo.swift in Sources */,
@@ -339,13 +383,17 @@
 				ED7A928B2BC27C4000ADAD81 /* Todolist.swift in Sources */,
 				D97A4EC82AEF5565002C6E15 /* PropertyWrapperDemo.swift in Sources */,
 				ED128DB92EB2159100DAF46F /* LayoutDemo.swift in Sources */,
+				ED5CEBDB2F67F2FA008015C3 /* CustomLayout.swift in Sources */,
 				D922D85F2B0B43F500B3A5FB /* NumberGame.swift in Sources */,
 				ED0843FB2D478F91006979B2 /* ScrollableSegmentControl.swift in Sources */,
 				EDCE1B1C2C9BEAEE00F0048E /* TabbarDemo.swift in Sources */,
 				D922D87D2B0EE89200B3A5FB /* AnimationDemo.swift in Sources */,
 				D9F357022B01CE4300001ABD /* MetroView.swift in Sources */,
 				D9CD30772B04B71D00F38F91 /* SortInActionDemo.swift in Sources */,
+				EDE31F702F73D91D00A73F57 /* KeyboardHandlingDemo.swift in Sources */,
+				ED1E2E212F585C82009F5861 /* SolarSystem.swift in Sources */,
 				EDBFC71D2E04144500C061E4 /* BindingDemo.swift in Sources */,
+				ED346E392F626521006DC5B8 /* LoadingSpinnerView.swift in Sources */,
 				D97A4EC62AEF5565002C6E15 /* SwiftUIDemoApp.swift in Sources */,
 				D9CF4C0F2B146ADD00BAF347 /* DateTimeInTimeZoneDemo.swift in Sources */,
 				D9CD30432B03202600F38F91 /* WebViewDemo.swift in Sources */,

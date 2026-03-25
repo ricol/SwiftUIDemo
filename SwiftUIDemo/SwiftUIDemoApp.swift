@@ -11,11 +11,12 @@ import SwiftUI
 struct SwiftUIDemoApp: App {
     var body: some Scene {
         WindowGroup {
-//            DateTimeInTimeZoneDemo()
+            DateTimeInTimeZoneDemo()
 //            MainImagesView()
 //            SetIdealSize()
 //            CustomBindingView()
-            Text("welcome")
+//            SolarSystemView()
+//            KeyboardHandlingDemo()
         }
     }
 }
