@@ -11,12 +11,7 @@ import SwiftUI
 struct SwiftUIDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            DateTimeInTimeZoneDemo()
-//            MainImagesView()
-//            SetIdealSize()
-//            CustomBindingView()
-//            SolarSystemView()
-//            KeyboardHandlingDemo()
+            SliderViewDemo()
         }
     }
 }

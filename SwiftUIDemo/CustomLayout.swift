@@ -12,7 +12,7 @@ struct LayoutProtocolExample: View {
             }
             .pickerStyle(.segmented)
             .zIndex(2)
-            AlignmentBottomLayout {
+            LayoutDemoView.AlignmentBottomLayout {
                 ForEach(views.indices, id: \.self) { i in
                     RoundedRectangle(cornerRadius: 20)
                         .fill(.orange.gradient)
@@ -36,7 +36,7 @@ struct LayoutProtocolDemo: View {
     var body: some View {
         Color.clear
             .overlay(
-                AlignmentBottomLayout {
+                LayoutDemoView.AlignmentBottomLayout {
                     RedView()
                         .alignmentActive(show ? false : true)
                     GreenView()
@@ -57,83 +57,85 @@ struct LayoutProtocolDemo: View {
     LayoutProtocolExample()
 }
 
-struct ActiveKey: LayoutValueKey {
-    static var defaultValue = false
-}
-
 extension View {
     func alignmentActive(_ isActive: Bool) -> some View {
-        layoutValue(key: ActiveKey.self, value: isActive)
+        layoutValue(key: LayoutDemoView.ActiveKey.self, value: isActive)
     }
 }
 
-//struct MyLayout: Layout {
-//    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-//
-//    }
-//    
-//    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-//
-//    }
-//}
+struct LayoutDemoView {
+    //struct MyLayout: Layout {
+    //    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+    //
+    //    }
+    //
+    //    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+    //
+    //    }
+    //}
 
-struct AlignmentBottomLayout: Layout {
-    struct Catch {
-        var activeIndex = 0
-        var sizes: [CGSize] = []
-
-        var alignmentHeight: CGFloat {
-            guard !sizes.isEmpty else { return .zero }
-            return sizes[0...activeIndex].map { $0.height }.reduce(0,+)
-        }
+    struct ActiveKey: LayoutValueKey {
+        static var defaultValue = false
     }
 
+    struct AlignmentBottomLayout: Layout {
+        struct Catch {
+            var activeIndex = 0
+            var sizes: [CGSize] = []
 
-    func makeCache(subviews: Subviews) -> Catch {
-        .init()
-    }
-
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Catch) -> CGSize {
-        guard !subviews.isEmpty else { return .zero }
-        var height: CGFloat = .zero
-        for i in subviews.indices {
-            let subview = subviews[i]
-            if subview[ActiveKey.self] == true {
-                cache.activeIndex = i
+            var alignmentHeight: CGFloat {
+                guard !sizes.isEmpty else { return .zero }
+                return sizes[0...activeIndex].map { $0.height }.reduce(0,+)
             }
-            let viewDimension = subview.dimensions(in: proposal)
-            height += viewDimension.height
-            cache.sizes.append(.init(width: viewDimension.width, height: viewDimension.height))
         }
-        return .init(width: proposal.replacingUnspecifiedDimensions().width, height: proposal.replacingUnspecifiedDimensions().height)
+
+        func makeCache(subviews: Subviews) -> Catch {
+            .init()
+        }
+
+        func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Catch) -> CGSize {
+            guard !subviews.isEmpty else { return .zero }
+            var height: CGFloat = .zero
+            for i in subviews.indices {
+                let subview = subviews[i]
+//                if subview[ActiveKey.self] == true {
+//                    cache.activeIndex = i
+//                }
+                let viewDimension = subview.dimensions(in: proposal)
+                height += viewDimension.height
+                cache.sizes.append(.init(width: viewDimension.width, height: viewDimension.height))
+            }
+            return .init(width: proposal.replacingUnspecifiedDimensions().width, height: proposal.replacingUnspecifiedDimensions().height)
+        }
+
+        func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Catch) {
+            guard !subviews.isEmpty else { return }
+            var currentY: CGFloat = bounds.height - cache.alignmentHeight + bounds.minY
+            for i in subviews.indices {
+                let subview = subviews[i]
+                subview.place(at: .init(x: bounds.minX, y: currentY), anchor: .topLeading, proposal: proposal)
+                currentY += cache.sizes[i].height
+            }
+        }
     }
 
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Catch) {
-        guard !subviews.isEmpty else { return }
-        var currentY: CGFloat = bounds.height - cache.alignmentHeight + bounds.minY
-        for i in subviews.indices {
-            let subview = subviews[i]
-            subview.place(at: .init(x: bounds.minX, y: currentY), anchor: .topLeading, proposal: proposal)
-            currentY += cache.sizes[i].height
+    struct MyLayout: Layout {
+        func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+            .zero
         }
-    }
-}
 
-struct MyLayout: Layout {
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        .zero
-    }
-    
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        subviews.forEach { v in
-            v.place(at: CGPoint.zero, anchor: .center, proposal: .infinity)
+        func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+            subviews.forEach { v in
+                v.place(at: CGPoint.zero, anchor: .center, proposal: .infinity)
+            }
         }
     }
+
 }
 
 struct MyLayoutDemo: View {
     var body: some View {
-        MyLayout() {
+        LayoutDemoView.MyLayout() {
             RedView()
             GreenView()
         }
