@@ -10,8 +10,8 @@ import SwiftUI
 struct Student {
     var name: String
     var age: Int
-    var height: Double
-    var weight: Double
+    var height: Double = 0
+    var weight: Double = 0
 
     func sayHello() {
         print("Hello, I'm \(name)")
