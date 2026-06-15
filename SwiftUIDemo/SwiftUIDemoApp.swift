@@ -11,7 +11,7 @@ import SwiftUI
 struct SwiftUIDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            EmptyView()
+            Text("welcome to Swift UI world.")
         }
     }
 }

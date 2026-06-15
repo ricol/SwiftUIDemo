@@ -100,3 +100,39 @@ struct CustomBindingView: View {
 #Preview {
     CustomBindingView()
 }
+
+struct MyBindingDemo: View {
+    @State private var title: String = "Tap to play the music"
+    @State private var play: Bool = false
+
+    var body: some View {
+        VStack {
+            Text(title)
+            PlayButton(play: $play) {
+                withAnimation {
+                    title = play ? "the music is playing" : "the music is paused."
+                    play.toggle()
+                }
+            }
+            Spacer()
+        }
+    }
+
+    struct PlayButton: View {
+        @Binding var play: Bool
+        let block: () -> Void
+        var body: some View {
+            let _ = print("\(Date()) PlayButton created...")
+            Button {
+                block()
+            } label: {
+                Text( play ? "Pause" : "Play")
+                Image(systemName: play ? "pause" : "play")
+            }
+        }
+    }
+}
+
+#Preview {
+    MyBindingDemo()
+}
